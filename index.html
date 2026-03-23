@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent Actual, LLC — Secure IT &amp; Telecom Solutions</title>
+    <meta name="description" content="Service-Disabled Veteran-Owned Small Business delivering AI, cloud, telecom, and cybersecurity solutions for government and business success.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0a0e2a;
+            --navy-deep: #060920;
+            --navy-mid: #111640;
+            --navy-light: #1a2058;
+            --blue: #2941d4;
+            --blue-bright: #4361ee;
+            --blue-glow: rgba(67, 97, 238, 0.12);
+            --teal: #2dd4a8;
+            --teal-dim: rgba(45, 212, 168, 0.1);
+            --red: #e63946;
+            --red-dim: rgba(230, 57, 70, 0.1);
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --gray: #6c757d;
+            --dark-text: #1a1a2e;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* ── LOGO SVG (reusable) ── */
+        .va-logo {
+            width: 40px; height: 48px; flex-shrink: 0;
+        }
+        .va-logo-lg { width: 60px; height: 72px; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 14, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.75rem 2rem;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 0.75rem;
+            text-decoration: none;
+        }
+        .logo-text {
+            font-size: 1rem; font-weight: 700; color: var(--white);
+            letter-spacing: -0.01em; line-height: 1.2;
+        }
+        .logo-text span { display: block; font-size: 0.65rem; color: var(--gray); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.875rem;
+            font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--white); }
+        .nav-cta {
+            background: var(--teal) !important; color: var(--navy) !important;
+            padding: 0.55rem 1.5rem; border-radius: 6px;
+            font-weight: 700 !important; transition: all 0.2s;
+        }
+        .nav-cta:hover { background: #5fe8c4 !important; transform: translateY(-1px); }
+        .hamburger {
+            display: none; background: none; border: none; cursor: pointer; padding: 0.5rem;
+        }
+        .hamburger span {
+            display: block; width: 22px; height: 2px; background: var(--white);
+            margin: 5px 0; transition: 0.3s;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative; overflow: hidden;
+            background: var(--navy);
+            padding: 9rem 2rem 5rem;
+            min-height: 90vh; display: flex; align-items: center;
+        }
+        .hero-blob-1 {
+            position: absolute; top: -20%; right: -10%; width: 600px; height: 600px;
+            background: var(--blue); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            opacity: 0.08; filter: blur(60px);
+        }
+        .hero-blob-2 {
+            position: absolute; bottom: -30%; left: -15%; width: 500px; height: 500px;
+            background: var(--blue); border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+            opacity: 0.06; filter: blur(80px);
+        }
+        .hero-inner {
+            max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--teal-dim); border: 1px solid rgba(45, 212, 168, 0.25);
+            color: var(--teal); padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1.5rem;
+        }
+        .hero-tagline {
+            font-size: 1rem; font-weight: 700; color: var(--red);
+            letter-spacing: 0.03em; margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.25rem, 4vw, 3.25rem); font-weight: 900;
+            color: var(--white); line-height: 1.12; letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.6); max-width: 520px;
+            margin-bottom: 2.5rem; line-height: 1.7;
+        }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem; border-radius: 8px; font-size: 0.95rem;
+            font-weight: 600; text-decoration: none; transition: all 0.25s;
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: var(--teal); color: var(--navy);
+            box-shadow: 0 4px 20px rgba(45, 212, 168, 0.3);
+            font-weight: 700;
+        }
+        .btn-primary:hover { background: #5fe8c4; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(45, 212, 168, 0.4); }
+        .btn-blue {
+            background: var(--blue); color: var(--white);
+            box-shadow: 0 4px 20px rgba(41, 65, 212, 0.35);
+        }
+        .btn-blue:hover { background: var(--blue-bright); transform: translateY(-2px); }
+        .btn-outline-light {
+            background: transparent; color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-outline-light:hover { border-color: var(--teal); color: var(--white); }
+        .btn-outline-dark {
+            background: transparent; color: var(--dark-text);
+            border: 1px solid var(--light-gray);
+        }
+        .btn-outline-dark:hover { border-color: var(--blue); color: var(--blue); }
+        .btn-outline-teal {
+            background: transparent; color: var(--teal);
+            border: 1px solid rgba(45, 212, 168, 0.4);
+        }
+        .btn-outline-teal:hover { background: var(--teal); color: var(--navy); }
+
+        .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+        .hero-device {
+            width: 100%; max-width: 480px; position: relative;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 2rem; backdrop-filter: blur(10px);
+        }
+        .terminal-bar { display: flex; gap: 6px; margin-bottom: 1.25rem; }
+        .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .terminal-dot:nth-child(1) { background: #ff5f56; }
+        .terminal-dot:nth-child(2) { background: #ffbd2e; }
+        .terminal-dot:nth-child(3) { background: #27c93f; }
+        .terminal-line {
+            font-family: 'Courier New', monospace; font-size: 0.8rem;
+            color: rgba(255,255,255,0.5); margin-bottom: 0.35rem;
+        }
+        .terminal-line .cmd { color: var(--teal); }
+        .terminal-line .ok { color: #27c93f; }
+        .terminal-line .val { color: var(--red); }
+
+        /* ── TRUST BAR ── */
+        .trust-bar {
+            background: var(--navy-mid);
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(45, 212, 168, 0.1);
+            border-bottom: 1px solid rgba(45, 212, 168, 0.1);
+        }
+        .trust-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: center;
+            gap: 2.5rem; flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.5);
+            letter-spacing: 0.04em;
+        }
+        .trust-item::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+
+        /* ── SECTIONS ── */
+        section { padding: 6rem 2rem; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem;
+        }
+        .section-label-red { color: var(--red); }
+        .section-label-light { color: rgba(255,255,255,0.4); }
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 900;
+            color: var(--dark-text); letter-spacing: -0.025em;
+            margin-bottom: 1rem; line-height: 1.15;
+        }
+        .section-title-light { color: var(--white); }
+        .section-subtitle {
+            font-size: 1.05rem; color: var(--gray); max-width: 600px;
+            margin-bottom: 3.5rem; line-height: 1.7;
+        }
+        .section-subtitle-light { color: rgba(255,255,255,0.5); }
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* ── SERVICES (3-column) ── */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .service-card { text-align: center; padding: 2.5rem 1.5rem; }
+        .service-card h3 {
+            font-size: 1.15rem; font-weight: 800; color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+        .service-card p {
+            font-size: 0.925rem; color: var(--gray); line-height: 1.65; margin-bottom: 1.25rem;
+        }
+        .service-link {
+            font-size: 0.9rem; font-weight: 600; color: var(--dark-text);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+            border-bottom: 2px solid var(--teal); padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+        .service-link:hover { color: var(--blue); }
+        .service-divider {
+            width: 40px; height: 3px; background: var(--teal);
+            margin: 0 auto 1.5rem; border-radius: 2px;
+        }
+
+        /* ── ABOUT (dark section) ── */
+        .dark-section {
+            background: var(--navy); position: relative; overflow: hidden;
+        }
+        .dark-section .blob-accent {
+            position: absolute; width: 400px; height: 400px;
+            background: var(--blue); border-radius: 50%; opacity: 0.04;
+            filter: blur(80px);
+        }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start;
+            position: relative; z-index: 1;
+        }
+        .founder-card {
+            background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 2.5rem; text-align: center;
+        }
+        .founder-avatar {
+            width: 100px; height: 100px; border-radius: 16px;
+            background: var(--navy-light); margin: 0 auto 1.25rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; font-weight: 900; color: rgba(255,255,255,0.15);
+            font-family: 'Playfair Display', serif;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .founder-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+        .founder-card .role { font-size: 0.8rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.25rem; }
+        .founder-creds { list-style: none; text-align: left; }
+        .founder-creds li {
+            font-size: 0.85rem; color: rgba(255,255,255,0.55); padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex; align-items: flex-start; gap: 0.6rem;
+        }
+        .founder-creds li:last-child { border-bottom: none; }
+        .cred-emoji { flex-shrink: 0; }
+
+        .about-content h3 {
+            font-size: 1.35rem; font-weight: 800; color: var(--white);
+            margin-bottom: 1rem; line-height: 1.3;
+        }
+        .about-content p {
+            font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+        .about-points { list-style: none; margin-top: 1.5rem; }
+        .about-points li {
+            margin-bottom: 1.25rem; display: flex; gap: 0.75rem; align-items: flex-start;
+        }
+        .about-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--teal-dim); display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 0.85rem;
+        }
+        .about-points strong {
+            color: var(--white); font-weight: 700; display: block; margin-bottom: 0.15rem;
+            font-size: 0.9rem;
+        }
+        .about-points p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.55; margin: 0; }
+
+        /* ── CAPABILITIES GRID ── */
+        .capabilities-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .cap-card {
+            background: var(--off-white); border: 1px solid var(--light-gray);
+            border-radius: 12px; padding: 2rem;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .cap-card:hover {
+            border-color: var(--blue); transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(41, 65, 212, 0.08);
+        }
+        .cap-card-icon {
+            width: 48px; height: 48px; border-radius: 10px;
+            background: var(--blue-glow); display: flex;
+            align-items: center; justify-content: center;
+            margin-bottom: 1.25rem; font-size: 1.3rem;
+        }
+        .cap-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--dark-text); margin-bottom: 0.6rem; }
+        .cap-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.65; }
+        .tag {
+            display: inline-block; margin-top: 0.75rem; padding: 0.25rem 0.75rem;
+            background: var(--blue-glow); color: var(--blue); font-size: 0.7rem;
+            font-weight: 600; border-radius: 50px;
+        }
+
+        /* ═══ TRIAGE TOOL FEATURE SECTION ═══ */
+        .triage-hero {
+            background: var(--navy); position: relative; overflow: hidden;
+            padding: 5rem 2rem;
+        }
+        .triage-hero .blob-accent {
+            position: absolute; width: 500px; height: 500px;
+            background: var(--teal); border-radius: 50%; opacity: 0.03;
+            filter: blur(100px);
+        }
+        .triage-inner {
+            max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+        }
+        .triage-header {
+            text-align: center; margin-bottom: 4rem;
+        }
+        .triage-header .badge-pill {
+            display: inline-block; padding: 0.4rem 1.25rem; border-radius: 50px;
+            background: var(--teal-dim); border: 1px solid rgba(45, 212, 168, 0.25);
+            color: var(--teal); font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem;
+        }
+        .triage-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+            color: var(--white); line-height: 1.15; margin-bottom: 0.5rem;
+        }
+        .triage-header h2 em {
+            font-style: italic; color: var(--teal);
+        }
+        .triage-header p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.5); max-width: 600px;
+            margin: 1rem auto 2rem; line-height: 1.7;
+        }
+        .triage-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Problem cards */
+        .problem-section { padding: 4rem 0; }
+        .problem-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem; font-weight: 900; color: var(--white);
+            margin-bottom: 0.75rem; line-height: 1.2;
+        }
+        .problem-section > p {
+            font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem;
+            max-width: 550px;
+        }
+        .problem-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+        }
+        .problem-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px; padding: 1.5rem;
+        }
+        .problem-card .emoji { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .problem-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+        .problem-card p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+
+        /* Demo terminal */
+        .demo-section { padding: 4rem 0; }
+        .demo-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem; font-weight: 900; color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        .demo-section > p {
+            font-size: 1rem; color: rgba(255,255,255,0.45); margin-bottom: 2rem;
+        }
+        .demo-terminal {
+            background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px; padding: 2rem; overflow-x: auto;
+        }
+        .demo-terminal .terminal-bar { margin-bottom: 1rem; }
+        .demo-terminal .terminal-title {
+            font-family: 'Courier New', monospace; font-size: 0.75rem;
+            color: rgba(255,255,255,0.3); margin-bottom: 1.5rem;
+        }
+        .demo-terminal pre {
+            font-family: 'Courier New', monospace; font-size: 0.8rem;
+            color: rgba(255,255,255,0.6); line-height: 1.8; white-space: pre-wrap;
+        }
+        .demo-terminal .label { color: var(--teal); font-weight: 700; }
+        .demo-terminal .key { color: var(--white); font-weight: 700; }
+        .demo-terminal .sep { color: rgba(255,255,255,0.15); }
+
+        /* Coverage categories */
+        .coverage-section { padding: 4rem 2rem; background: var(--off-white); }
+        .coverage-inner { max-width: 1200px; margin: 0 auto; }
+        .coverage-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+        }
+        .coverage-card {
+            background: var(--white); border: 1px solid var(--light-gray);
+            border-radius: 12px; padding: 1.5rem;
+            display: flex; align-items: flex-start; gap: 1rem;
+            transition: border-color 0.3s;
+        }
+        .coverage-card:hover { border-color: var(--blue); }
+        .coverage-card .cc-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .coverage-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--dark-text); margin-bottom: 0.3rem; }
+        .coverage-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.5; }
+
+        /* Pricing */
+        .pricing-section { padding: 4rem 0; }
+        .pricing-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem; font-weight: 900; color: var(--white); margin-bottom: 0.5rem;
+        }
+        .pricing-section > p { color: rgba(255,255,255,0.45); margin-bottom: 2.5rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .price-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 2rem; position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--teal);
+            background: rgba(45, 212, 168, 0.04);
+        }
+        .price-card .pop-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--teal); color: var(--navy); font-size: 0.65rem;
+            font-weight: 800; padding: 0.3rem 1rem; border-radius: 50px;
+            letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .price-card .tier-name {
+            font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.4);
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+        .price-card .price {
+            font-size: 2.5rem; font-weight: 900; color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .price-card.featured .price { color: var(--teal); }
+        .price-card .price-sub { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; }
+        .price-card hr { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.25rem; }
+        .price-card ul { list-style: none; }
+        .price-card ul li {
+            font-size: 0.85rem; color: rgba(255,255,255,0.55); padding: 0.35rem 0;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .price-card ul li::before { content: '\2713'; color: var(--teal); font-weight: 700; font-size: 0.8rem; }
+        .price-card .btn { width: 100%; justify-content: center; margin-top: 1.5rem; font-size: 0.9rem; }
+
+        /* Autonomous tier banner */
+        .auto-banner {
+            margin-top: 2.5rem; padding: 2rem 2.5rem;
+            background: var(--navy-mid); border: 1px solid rgba(45, 212, 168, 0.15);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 2rem; flex-wrap: wrap;
+        }
+        .auto-banner .ab-badge {
+            display: inline-block; padding: 0.3rem 0.75rem; border-radius: 50px;
+            background: var(--teal-dim); border: 1px solid rgba(45, 212, 168, 0.25);
+            color: var(--teal); font-size: 0.65rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.75rem;
+        }
+        .auto-banner h4 { font-size: 1.15rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+        .auto-banner p { font-size: 0.9rem; color: rgba(255,255,255,0.45); line-height: 1.6; max-width: 600px; }
+        .auto-banner .auto-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .auto-banner .auto-tags span {
+            font-size: 0.7rem; padding: 0.25rem 0.6rem; border-radius: 50px;
+            background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.45);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .auto-banner .ab-right { text-align: right; flex-shrink: 0; }
+        .auto-banner .ab-price { font-size: 0.8rem; color: var(--teal); margin-top: 0.75rem; }
+
+        /* ── PLEX CARD ── */
+        .plex-section { background: var(--off-white); }
+        .plex-card {
+            background: var(--white); border: 1px solid var(--light-gray);
+            border-radius: 16px; padding: 3rem;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+        }
+        .plex-card h3 { font-size: 1.5rem; font-weight: 800; color: var(--dark-text); margin-bottom: 0.75rem; }
+        .plex-card p { font-size: 0.95rem; color: var(--gray); line-height: 1.65; margin-bottom: 1.25rem; }
+        .plex-features {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+        }
+        .plex-features span {
+            font-size: 0.82rem; color: var(--gray); padding: 0.4rem 0;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .plex-features span::before { content: '\2713'; color: var(--teal); font-weight: 700; }
+
+        /* ── WRITINGS ── */
+        .writings-section { background: var(--white); }
+        .writings-card {
+            background: var(--off-white); border: 1px solid var(--light-gray);
+            border-radius: 12px; padding: 2.5rem;
+            display: flex; align-items: center; gap: 2.5rem;
+        }
+        .writings-icon {
+            width: 80px; height: 80px; border-radius: 16px;
+            background: linear-gradient(135deg, #ff6719, #ff8c42);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .writings-icon svg { width: 40px; height: 40px; fill: white; }
+        .writings-content h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-text); margin-bottom: 0.5rem; }
+        .writings-content p { font-size: 0.925rem; color: var(--gray); line-height: 1.65; margin-bottom: 1rem; }
+
+        /* ── COMPLIANCE ── */
+        .compliance-strip {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+        }
+        .compliance-badge {
+            text-align: center; padding: 2rem 1rem;
+            border: 1px solid var(--light-gray); border-radius: 12px;
+            background: var(--white); transition: border-color 0.3s, transform 0.3s;
+        }
+        .compliance-badge:hover { border-color: var(--blue); transform: translateY(-3px); }
+        .compliance-badge-icon {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: var(--blue-glow); margin: 0 auto 1rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+        }
+        .compliance-badge h4 { font-size: 0.95rem; font-weight: 700; color: var(--dark-text); margin-bottom: 0.4rem; }
+        .compliance-badge p { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+
+        /* ── CONTACT ── */
+        .contact-section { background: var(--navy); position: relative; overflow: hidden; }
+        .contact-blob {
+            position: absolute; top: -20%; right: -10%; width: 500px; height: 500px;
+            background: var(--blue); border-radius: 40% 60% 55% 45% / 55% 40% 60% 45%;
+            opacity: 0.05; filter: blur(60px);
+        }
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            position: relative; z-index: 1;
+        }
+        .contact-info h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 1.75rem; }
+        .contact-line { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .contact-icon {
+            width: 44px; height: 44px; border-radius: 50px;
+            background: rgba(45, 212, 168, 0.1); border: 1px solid rgba(45, 212, 168, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 1rem;
+        }
+        .contact-text { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+        .contact-text a { color: var(--teal); text-decoration: none; }
+        .contact-text a:hover { color: var(--white); }
+        .social-links { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .social-link {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(45, 212, 168, 0.1); border: 1px solid rgba(45, 212, 168, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal); text-decoration: none; font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .social-link:hover { background: var(--teal); color: var(--navy); }
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-form input, .contact-form textarea {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; padding: 0.9rem 1.1rem; color: var(--white);
+            font-family: inherit; font-size: 0.925rem; transition: border-color 0.2s; outline: none;
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.25); }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--teal); }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        .contact-form .btn-primary { align-self: flex-start; }
+
+        /* ── FOOTER ── */
+        footer { background: var(--navy-deep); border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto; padding: 3rem 2rem;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+        }
+        .footer-brand .logo { margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 280px; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.4);
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem;
+        }
+        .footer-col a {
+            display: block; font-size: 0.875rem; color: rgba(255,255,255,0.5);
+            text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.8rem; color: rgba(255,255,255,0.25);
+        }
+
+        /* ── AI CONSULTING SECTION ── */
+        .ai-process-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+            counter-reset: step;
+        }
+        .ai-step {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px; padding: 1.75rem; position: relative;
+            counter-increment: step;
+        }
+        .ai-step::before {
+            content: counter(step, decimal-leading-zero);
+            font-size: 2rem; font-weight: 900; color: rgba(45, 212, 168, 0.15);
+            display: block; margin-bottom: 0.75rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .ai-step h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+        .ai-step p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+        .ai-audiences {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+        .ai-audience-card {
+            background: rgba(45, 212, 168, 0.04); border: 1px solid rgba(45, 212, 168, 0.12);
+            border-radius: 12px; padding: 1.75rem; text-align: center;
+        }
+        .ai-audience-card .emoji { font-size: 2rem; margin-bottom: 0.75rem; }
+        .ai-audience-card h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+        .ai-audience-card p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+        .ai-examples {
+            margin-top: 2.5rem;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+        }
+        .ai-example {
+            display: flex; align-items: flex-start; gap: 1rem;
+            padding: 1.25rem;
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+        }
+        .ai-example .arrow { color: var(--teal); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .ai-example .before { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+        .ai-example .after { font-size: 0.85rem; color: var(--white); font-weight: 600; }
+
+        /* ── TECH STACK MARQUEE ── */
+        .tech-stack {
+            background: var(--white);
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1.5rem 0;
+            overflow: hidden;
+        }
+        .marquee-track {
+            display: flex; gap: 3rem; align-items: center;
+            animation: marquee 25s linear infinite;
+            width: max-content;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .tech-item {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.85rem; font-weight: 600; color: var(--gray);
+            white-space: nowrap; letter-spacing: 0.02em;
+        }
+        .tech-item svg { width: 20px; height: 20px; fill: var(--blue); opacity: 0.6; }
+
+        /* ── ENGINEERING PRINCIPLES ── */
+        .principles-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+        }
+        .principle-card {
+            background: var(--off-white); border: 1px solid var(--light-gray);
+            border-radius: 12px; padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .principle-card:hover { border-color: var(--blue); }
+        .principle-card h4 {
+            font-size: 0.95rem; font-weight: 700; color: var(--dark-text);
+            margin-bottom: 0.4rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .principle-card h4::before {
+            content: '\2713'; display: inline-flex; align-items: center; justify-content: center;
+            width: 22px; height: 22px; border-radius: 50%;
+            background: var(--blue-glow); color: var(--blue); font-size: 0.7rem; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .principle-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.55; }
+
+        /* ── SELECTED PROJECTS ── */
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+        }
+        .project-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 2rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .project-card:hover { border-color: rgba(45, 212, 168, 0.3); transform: translateY(-3px); }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+        .project-tags span {
+            font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 50px;
+            background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .project-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+        .project-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 0.75rem; }
+        .project-card .detail { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
+
+        /* ── EXPERIENCE TIMELINE ── */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+            width: 2px; background: var(--light-gray);
+        }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot {
+            position: absolute; left: -2rem; top: 0.2rem;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--blue); border: 3px solid var(--off-white);
+        }
+        .timeline-dot.active { background: var(--teal); }
+        .timeline-item h4 { font-size: 1.05rem; font-weight: 700; color: var(--dark-text); }
+        .timeline-item h4 span { font-weight: 500; color: var(--blue); }
+        .timeline-item .dates { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.5rem; }
+        .timeline-item p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
+        .timeline-item ul { list-style: none; margin-top: 0.5rem; }
+        .timeline-item ul li {
+            font-size: 0.85rem; color: var(--gray); padding: 0.25rem 0;
+            display: flex; align-items: flex-start; gap: 0.5rem;
+        }
+        .timeline-item ul li::before { content: '\2022'; color: var(--blue); font-weight: 700; }
+
+        /* ── EDUCATION / CERTS / MILITARY ── */
+        .edu-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+        }
+        .edu-column h3 {
+            font-size: 1.15rem; font-weight: 800; color: var(--dark-text);
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .edu-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .edu-item:last-child { border-bottom: none; }
+        .edu-item h4 { font-size: 0.95rem; font-weight: 700; color: var(--dark-text); }
+        .edu-item .school { font-size: 0.82rem; color: var(--gray); }
+        .military-card {
+            background: var(--navy); border-radius: 12px; padding: 1.75rem;
+            color: var(--white); margin-top: 1.5rem;
+        }
+        .military-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .military-card .dates { font-size: 0.85rem; color: var(--teal); margin-bottom: 0.5rem; }
+        .military-card p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.55; }
+        .military-tags { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+        .military-tags span {
+            font-size: 0.7rem; padding: 0.25rem 0.6rem; border-radius: 50px;
+            background: rgba(45, 212, 168, 0.1); color: var(--teal);
+            border: 1px solid rgba(45, 212, 168, 0.2);
+        }
+        .certs-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .cert-card {
+            background: var(--off-white); border: 1px solid var(--light-gray);
+            border-radius: 8px; padding: 1rem;
+        }
+        .cert-card h5 { font-size: 0.85rem; font-weight: 700; color: var(--dark-text); }
+        .cert-card .year { font-size: 0.75rem; color: var(--gray); }
+
+        /* ── ANIMATIONS ── */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+            .compliance-strip { grid-template-columns: repeat(2, 1fr); }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+            .problem-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .coverage-grid { grid-template-columns: repeat(2, 1fr); }
+            .plex-card { grid-template-columns: 1fr; }
+            .principles-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .certs-grid { grid-template-columns: repeat(2, 1fr); }
+            .ai-process-grid { grid-template-columns: repeat(2, 1fr); }
+            .ai-audiences { grid-template-columns: 1fr; }
+            .ai-examples { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .auto-banner { flex-direction: column; text-align: center; }
+            .auto-banner .ab-right { text-align: center; }
+            .writings-card { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-links.open {
+                display: flex; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0; background: var(--navy);
+                padding: 1.5rem 2rem; gap: 1.25rem;
+                border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+            }
+            .compliance-strip { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .problem-grid { grid-template-columns: 1fr; }
+            .coverage-grid { grid-template-columns: 1fr; }
+            .principles-grid { grid-template-columns: 1fr; }
+            .certs-grid { grid-template-columns: 1fr; }
+            .ai-process-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr !important; max-width: 500px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ INLINE SVG LOGO DEFINITION ═══ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <defs>
+        <symbol id="va-shield" viewBox="0 0 52 64">
+            <!-- Shield body -->
+            <path d="M26 8 L48 18 V38 C48 52 26 62 26 62 C26 62 4 52 4 38 V18 Z" fill="#0a0e2a" stroke="#2941d4" stroke-width="0.5"/>
+            <!-- Left half: red/white diagonal stripes -->
+            <clipPath id="leftClip"><path d="M26 8 L4 18 V38 C4 52 26 62 26 62 V8Z"/></clipPath>
+            <g clip-path="url(#leftClip)">
+                <rect x="-10" y="8" width="80" height="60" fill="#e63946" transform="rotate(-30 26 38)"/>
+                <rect x="-10" y="16" width="80" height="6" fill="white" transform="rotate(-30 26 38)"/>
+                <rect x="-10" y="28" width="80" height="6" fill="white" transform="rotate(-30 26 38)"/>
+                <rect x="-10" y="40" width="80" height="6" fill="white" transform="rotate(-30 26 38)"/>
+                <rect x="-10" y="52" width="80" height="6" fill="white" transform="rotate(-30 26 38)"/>
+            </g>
+            <!-- Right half: blue with circuit traces -->
+            <clipPath id="rightClip"><path d="M26 8 L48 18 V38 C48 52 26 62 26 62 V8Z"/></clipPath>
+            <g clip-path="url(#rightClip)">
+                <rect x="26" y="8" width="22" height="54" fill="#4EADEA"/>
+                <!-- Circuit traces -->
+                <line x1="32" y1="24" x2="32" y2="45" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="32" y1="35" x2="40" y2="35" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="40" y1="28" x2="40" y2="48" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="36" y1="28" x2="44" y2="28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="32" cy="24" r="2.5" fill="none" stroke="white" stroke-width="1.2"/>
+                <circle cx="32" cy="45" r="2.5" fill="none" stroke="white" stroke-width="1.2"/>
+                <circle cx="40" cy="28" r="2.5" fill="none" stroke="white" stroke-width="1.2"/>
+                <circle cx="40" cy="48" r="2.5" fill="none" stroke="white" stroke-width="1.2"/>
+            </g>
+            <!-- Star on top -->
+            <polygon points="26,0 28.8,5.8 35,6.6 30.5,11 31.6,17.2 26,14.2 20.4,17.2 21.5,11 17,6.6 23.2,5.8" fill="#4EADEA"/>
+        </symbol>
+    </defs>
+</svg>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <svg class="va-logo"><use href="#va-shield"/></svg>
+            <div class="logo-text">
+                Vincent Actual, LLC
+                <span>Secure IT &amp; Telecom Solutions</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#triage">Triage Tool</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge">&#9733; Service-Disabled Veteran-Owned Small Business</div>
+            <div class="hero-tagline">Secure. Scalable. Ready.</div>
+            <h1>Delivering AI, cloud, and telecom solutions that power government and business success</h1>
+            <p>Purpose-built compute and workflows from a veteran-led team with real-world mission experience. NIST 800-171, CMMC, and FedRAMP readiness built into every engagement.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Contact Us &rarr;</a>
+                <a href="#services" class="btn btn-outline-light">Explore Services</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-device">
+                <div class="terminal-bar">
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                </div>
+                <div class="terminal-line"><span class="cmd">$</span> nist-scan --framework 800-171</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> 110/110 controls assessed</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> CUI boundary mapped</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> SSP generated</div>
+                <div class="terminal-line">&nbsp;</div>
+                <div class="terminal-line"><span class="cmd">$</span> cmmc-readiness --level 2</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> 14 domains verified</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> POA&M items: <span class="val">0 critical</span></div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> Assessment ready</div>
+                <div class="terminal-line">&nbsp;</div>
+                <div class="terminal-line"><span class="cmd">$</span> deploy --target il5-enclave</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> Zero-trust policies applied</div>
+                <div class="terminal-line"><span class="ok">&#10003;</span> Infrastructure online</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ TRUST BAR ═══════════ -->
+<div class="trust-bar">
+    <div class="trust-inner">
+        <div class="trust-item">Veteran-Owned (SDVOSB)</div>
+        <div class="trust-item">Healthcare MSP Tested</div>
+        <div class="trust-item">Compliance-Ready Output</div>
+        <div class="trust-item">NIST 800-171</div>
+        <div class="trust-item">CMMC Level 2</div>
+        <div class="trust-item">FedRAMP Ready</div>
+    </div>
+</div>
+
+<!-- ═══════════ TECH STACK MARQUEE ═══════════ -->
+<div class="tech-stack">
+    <div class="marquee-track">
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M12 0L1.75 6v12L12 24l10.25-6V6L12 0zm0 3.28l7 4.04v8.36l-7 4.04-7-4.04V7.32l7-4.04z"/></svg> Terraform</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.63.05-.55.13-.46.21-.38.26-.31.3-.25.33-.19.35-.14.35-.1.33-.07.3-.04.26-.02.21v3.06H1.5l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v.62H6.34l-.09.01-.12.03-.15.06-.17.1-.17.14-.17.19-.16.24-.14.29-.12.35-.09.41-.06.47-.02.54v.56l.03.46.07.38.1.3.14.24.17.19.19.14.21.11.22.07.23.05.23.02h4.14l.63-.05.55-.13.46-.21.38-.26.31-.3.25-.33.19-.35.14-.35.1-.33.07-.3.04-.26.02-.21V9.5h5.18l.21.03.28.07.32.12.35.18.36.26.36.36.35.46.32.59.28.73.21.88.14 1.05.05 1.23-.06 1.22-.16 1.04-.24.87-.32.71-.36.57-.4.44-.42.33-.42.24-.4.16-.36.1-.32.05-.24.01h-.16l-.06-.01H9.85v-.62h7.82l.09-.01.12-.03.15-.06.17-.1.17-.14.17-.19.16-.24.14-.29.12-.35.09-.41.06-.47.02-.54v-.56l-.03-.46-.07-.38-.1-.3-.14-.24-.17-.19-.19-.14-.21-.11-.22-.07-.23-.05-.23-.02h-4.14z"/></svg> Python</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.186.186 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.186v1.887c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.186v1.887c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.186.186 0 00-.185-.186H5.136a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.186.186 0 00-.184-.186H2.216a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m11.766 2.715h2.119a.185.185 0 00.185-.185v-1.888a.185.185 0 00-.185-.185h-2.119a.185.185 0 00-.184.185v1.888c0 .102.082.185.184.185m-2.93 0h2.12a.185.185 0 00.184-.185v-1.888a.185.185 0 00-.184-.185h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.184.185m-2.964 0h2.119a.185.185 0 00.185-.185v-1.888a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.184.185v1.888c0 .102.082.185.184.185m-2.965 0h2.119a.186.186 0 00.186-.185v-1.888a.186.186 0 00-.186-.185H5.136a.186.186 0 00-.186.185v1.888c0 .102.084.185.186.185m-2.92 0h2.12a.186.186 0 00.184-.185v-1.888a.185.185 0 00-.184-.185H2.216a.186.186 0 00-.186.185v1.888c0 .102.084.185.186.185M21.698 10.63c2.447 0 2.447 1.484 2.447 1.484l-2.447 1.484v-2.968z"/></svg> Docker</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="15" text-anchor="middle" font-size="7" fill="currentColor" font-weight="700">$_</text></svg> Bash</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Cisco</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg> Linux</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 17l3-6 3 4 2-2 2 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Wireshark</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M1 5.5L12 1l11 4.5v5c0 6.5-4.7 12.3-11 13.5C5.7 22.8 1 17 1 10.5v-5z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Azure</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M6.763 10.036a8.94 8.94 0 0 1 .29-2.39l1.89-.63a6.96 6.96 0 0 0-.18 1.49c0 1.51.48 2.91 1.29 4.06l-1.43 1.43a8.88 8.88 0 0 1-1.83-3.95z"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> AWS</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> OSPF</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="9" x2="22" y2="9" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="6" r="1" fill="currentColor"/><circle cx="8" cy="6" r="1" fill="currentColor"/></svg> M365</div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M12 0L1.75 6v12L12 24l10.25-6V6L12 0zm0 3.28l7 4.04v8.36l-7 4.04-7-4.04V7.32l7-4.04z"/></svg> Terraform</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77z"/></svg> Python</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="15" text-anchor="middle" font-size="7" fill="currentColor" font-weight="700">$_</text></svg> Bash</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Cisco</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg> Linux</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 17l3-6 3 4 2-2 2 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Wireshark</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M1 5.5L12 1l11 4.5v5c0 6.5-4.7 12.3-11 13.5C5.7 22.8 1 17 1 10.5v-5z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Azure</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M6.763 10.036a8.94 8.94 0 0 1 .29-2.39l1.89-.63z"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> AWS</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> OSPF</div>
+        <div class="tech-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="9" x2="22" y2="9" stroke="currentColor" stroke-width="1.5"/></svg> M365</div>
+    </div>
+</div>
+
+<!-- ═══════════ CORE SERVICES ═══════════ -->
+<section id="services">
+    <div class="section-inner">
+        <div class="text-center">
+            <div class="section-label fade-up">What We Deliver</div>
+            <h2 class="section-title fade-up">Core Capabilities</h2>
+            <p class="section-subtitle mx-auto fade-up">End-to-end solutions engineered for compliance, performance, and mission success.</p>
+        </div>
+        <div class="services-grid fade-up">
+            <div class="service-card">
+                <div class="service-divider"></div>
+                <h3>Cybersecurity &amp; Compliance</h3>
+                <p>NIST 800-171, CMMC, and FedRAMP-ready security built into every deployment. From risk assessments to continuous monitoring and ATO support.</p>
+                <a href="#capabilities" class="service-link">Learn More &rarr;</a>
+            </div>
+            <div class="service-card">
+                <div class="service-divider"></div>
+                <h3>Secure Cloud Solutions</h3>
+                <p>Scalable cloud modernization for agencies and enterprises needing strong governance. IL4/IL5 enclave deployments, hybrid architectures, and FedRAMP-aligned hosting.</p>
+                <a href="#capabilities" class="service-link">Learn More &rarr;</a>
+            </div>
+            <div class="service-card">
+                <div class="service-divider"></div>
+                <h3>AI Infrastructure &amp; Automation</h3>
+                <p>Purpose-built compute and workflows to accelerate mission success. From intelligent automation to AI-powered operational tooling for government and business.</p>
+                <a href="#capabilities" class="service-link">Learn More &rarr;</a>
+            </div>
+            <div class="service-card">
+                <div class="service-divider"></div>
+                <h3>AI Workflow Consulting</h3>
+                <p>Hands-on consulting to help any business identify, design, and implement AI-powered workflow optimizations that deliver measurable ROI.</p>
+                <a href="#ai-consulting" class="service-link">Learn More &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" class="dark-section">
+    <div class="blob-accent" style="top: -10%; right: -5%;"></div>
+    <div class="blob-accent" style="bottom: -15%; left: -10%;"></div>
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="founder-card fade-up">
+                <div class="founder-avatar">VP</div>
+                <h3>Vincent Prestia</h3>
+                <div class="role">Founder</div>
+                <ul class="founder-creds">
+                    <li><span class="cred-emoji">&#127894;</span> Service-Disabled Veteran — U.S. Navy Operations Specialist, 2003–2012</li>
+                    <li><span class="cred-emoji">&#127891;</span> Adjunct Professor &amp; Instructor — Networking Fundamentals, California Institute of Applied Technology</li>
+                    <li><span class="cred-emoji">&#128218;</span> MBA (Nova Southeastern) &middot; BS IT (WGU) &middot; AS Software Dev &middot; BS Cloud Admin (in progress, CIAT)</li>
+                    <li><span class="cred-emoji">&#127979;</span> Healthcare MSP depth: Nextech, RingCentral, Microsoft Intune/MDM, M365</li>
+                    <li><span class="cred-emoji">&#128187;</span> Certified: CompTIA Network+ CE, AZ-900, Security+, MCITP</li>
+                    <li><span class="cred-emoji">&#128188;</span> SDVOSB — Verified Service-Disabled Veteran-Owned Small Business</li>
+                </ul>
+            </div>
+            <div class="about-content">
+                <div class="section-label section-label-light fade-up">Built from the Inside Out</div>
+                <h2 class="section-title section-title-light fade-up">Mission-Ready from Day One</h2>
+                <p class="fade-up">This company wasn't built in a lab — it was built from years of working inside MSP environments. I started as an L1 engineer and worked my way up through L2 and infrastructure roles at Dynamic Network Support in Fort Lauderdale and Medicus IT, serving healthcare practices including plastic surgery, dental, and medical offices.</p>
+                <p class="fade-up">I saw the same L1-to-L2 escalation problem every single day and finally decided to fix it. That experience — combined with 8 years of Navy operations — drives everything we build.</p>
+                <ul class="about-points fade-up">
+                    <li>
+                        <div class="about-icon">&#128737;</div>
+                        <div>
+                            <strong>Compliance-First Mindset</strong>
+                            <p>NIST 800-171, CMMC Level 2, FedRAMP. Security engineered in from the start, not bolted on after.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="about-icon">&#9889;</div>
+                        <div>
+                            <strong>Agile &amp; Scalable Delivery</strong>
+                            <p>Small-business responsiveness with enterprise-grade reliability.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="about-icon">&#127942;</div>
+                        <div>
+                            <strong>SDVOSB Advantage</strong>
+                            <p>VA "Rule of Two" and set-aside eligible. Direct contracting paths that simplify procurement.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ EXPANDED CAPABILITIES ═══════════ -->
+<section id="capabilities">
+    <div class="section-inner">
+        <div class="section-label fade-up">Full Service Portfolio</div>
+        <h2 class="section-title fade-up">Everything We Do</h2>
+        <p class="section-subtitle fade-up">From zero-trust architecture to smart home automation — the full range of our IT expertise.</p>
+        <div class="capabilities-grid">
+            <div class="cap-card fade-up">
+                <div class="cap-card-icon">&#128274;</div>
+                <h3>Zero-Trust Architecture</h3>
+                <p>Identity-centric security design, micro-segmentation, and least-privilege enforcement for federal and enterprise environments.</p>
+                <span class="tag">Federal</span>
+            </div>
+            <div class="cap-card fade-up">
+                <div class="cap-card-icon">&#128225;</div>
+                <h3>Telecom Engineering</h3>
+                <p>Unified communications, VoIP infrastructure, SIP trunking, and network design built for reliability and compliance.</p>
+                <span class="tag">Telecom</span>
+            </div>
+            <div class="cap-card fade-up">
+                <div class="cap-card-icon">&#9729;&#65039;</div>
+                <h3>Cloud Migration &amp; Hosting</h3>
+                <p>Lift-and-shift, re-architecture, and managed cloud services across AWS GovCloud, Azure Government, and hybrid environments.</p>
+                <span class="tag">Cloud</span>
+            </div>
+            <div class="cap-card fade-up">
+                <div class="cap-card-icon">&#129302;</div>
+                <h3>AI &amp; Intelligent Automation</h3>
+                <p>Custom AI workflows, machine learning pipelines, and intelligent process automation to accelerate mission outcomes.</p>
+                <span class="tag">AI</span>
+            </div>
+            <div class="cap-card fade-up">
+                <div class="cap-card-icon">&#128202;</div>
+                <h3>Compliance &amp; ATO Support</h3>
+                <p>NIST 800-171 assessments, CMMC readiness, SSP development, POA&M management, and Authority to Operate packages.</p>
+                <span class="tag">Compliance</span>
+            </div>
+            <div class="cap-card fade-up">
+                <div class="cap-card-icon">&#128736;</div>
+                <h3>Managed IT &amp; MSP Services</h3>
+                <p>24/7 monitoring, patch management, incident response, helpdesk, and service desk operations with government-grade SLAs.</p>
+                <span class="tag">MSP</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ ENGINEERING PRINCIPLES ═══════════ -->
+<section style="background: var(--white);">
+    <div class="section-inner">
+        <div class="text-center">
+            <div class="section-label fade-up">How We Build</div>
+            <h2 class="section-title fade-up">Engineering Principles</h2>
+            <p class="section-subtitle mx-auto fade-up">The philosophy behind every system we architect and deploy.</p>
+        </div>
+        <div class="principles-grid fade-up">
+            <div class="principle-card">
+                <h4>Simplicity Over Complexity</h4>
+                <p>Building systems that are easy to understand, maintain, and scale by avoiding unnecessary abstractions.</p>
+            </div>
+            <div class="principle-card">
+                <h4>Security by Design</h4>
+                <p>Integrating security controls and compliance requirements from the initial architecture phase.</p>
+            </div>
+            <div class="principle-card">
+                <h4>Automation First</h4>
+                <p>Reducing toil and human error through rigorous Infrastructure as Code (IaC) and CI/CD practices.</p>
+            </div>
+            <div class="principle-card">
+                <h4>Resilience &amp; Redundancy</h4>
+                <p>Designing for failure with fault-tolerant architectures and comprehensive disaster recovery plans.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ SELECTED PROJECTS ═══════════ -->
+<section class="dark-section" id="projects" style="padding: 6rem 2rem;">
+    <div class="blob-accent" style="top: -10%; left: -5%;"></div>
+    <div class="section-inner" style="position: relative; z-index: 1;">
+        <div class="section-label section-label-light fade-up">Real Work</div>
+        <h2 class="section-title section-title-light fade-up">Selected Projects</h2>
+        <p class="section-subtitle section-subtitle-light fade-up">Practical applications of cloud architecture, network engineering, and infrastructure modernization.</p>
+        <div class="projects-grid fade-up">
+            <div class="project-card">
+                <div class="project-tags">
+                    <span>Networking</span><span>OSPF</span><span>Cisco</span><span>Topology Design</span>
+                </div>
+                <h4>Multi-Area OSPF Enterprise Network Design</h4>
+                <p>Designed a scalable enterprise network topology using OSPF multi-area configuration to optimize routing updates and reduce overhead.</p>
+                <div class="detail">Implemented hierarchical routing architecture, improving network convergence times and isolating failure domains for enterprise-scale environments.</div>
+            </div>
+            <div class="project-card">
+                <div class="project-tags">
+                    <span>Azure</span><span>Security</span><span>Networking</span><span>Cloud</span>
+                </div>
+                <h4>Secure Azure VNet with Bastion</h4>
+                <p>Architected a secure Azure Virtual Network environment with isolated subnets and restricted access via Azure Bastion.</p>
+                <div class="detail">Enforced strict NSG rules to deny direct internet access to backend resources, establishing a secure management plane for cloud workloads.</div>
+            </div>
+            <div class="project-card">
+                <div class="project-tags">
+                    <span>AWS</span><span>Serverless</span><span>Python</span><span>Data Engineering</span>
+                </div>
+                <h4>AWS Serverless Data Pipeline</h4>
+                <p>Built a cost-effective data processing pipeline using AWS Lambda, S3, and Glue for automated analytics.</p>
+                <div class="detail">Leveraged event-driven architecture to process incoming data streams in real-time, significantly reducing infrastructure costs versus traditional approaches.</div>
+            </div>
+            <div class="project-card">
+                <div class="project-tags">
+                    <span>Project Management</span><span>Hardware</span><span>Network Rollout</span><span>Infrastructure</span>
+                </div>
+                <h4>New Office IT Infrastructure Buildout</h4>
+                <p>Led the end-to-end physical and logical IT infrastructure deployment for a new corporate office location.</p>
+                <div class="detail">Managed cabling, switch configuration, wireless AP placement, and server room setup, delivering the project on schedule for a multi-site organization.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ EXPERIENCE TIMELINE ═══════════ -->
+<section id="experience" style="background: var(--off-white);">
+    <div class="section-inner">
+        <div class="section-label fade-up">Career</div>
+        <h2 class="section-title fade-up">Professional Experience</h2>
+        <p class="section-subtitle fade-up" style="margin-bottom: 2.5rem;">From active duty to MSP engineering to founding Vincent Actual.</p>
+        <div class="timeline fade-up">
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <h4>Vincent Actual <span>&middot; Founder &amp; Principal Engineer</span></h4>
+                <div class="dates">2025 – Present</div>
+                <p>Establishing a cloud-native consultancy focused on infrastructure modernization. Currently in pre-revenue build stage, developing service frameworks and architectural patterns for future clients.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot active"></div>
+                <h4>California Institute of Applied Technology <span>&middot; Adjunct Professor</span></h4>
+                <div class="dates">Sep 2024 – Present</div>
+                <p>Adjunct professor teaching networking fundamentals to the next generation of IT professionals.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Medicus IT <span>&middot; Infrastructure Engineer</span></h4>
+                <div class="dates">2021 – Present</div>
+                <ul>
+                    <li>Manage and optimize MSP infrastructure for healthcare clients, ensuring HIPAA compliance and high availability</li>
+                    <li>Lead technical projects involving server migrations, network upgrades, and security implementations</li>
+                    <li>Provide Tier 3 support and architectural guidance for complex system issues</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Dynamic Network Support <span>&middot; L1/L2 Engineer</span></h4>
+                <div class="dates">Fort Lauderdale</div>
+                <p>Started as an L1 engineer and worked up through L2 and infrastructure roles, serving healthcare practices including plastic surgery, dental, and medical offices. Where the L1-to-L2 escalation problem became impossible to ignore.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>United States Navy <span>&middot; Operations Specialist</span></h4>
+                <div class="dates">2003 – 2012</div>
+                <p>8 years of active-duty service supporting GWOT missions. Served with distinction, demonstrating leadership, resilience, and technical aptitude in high-pressure environments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ EDUCATION & CERTIFICATIONS ═══════════ -->
+<section id="education">
+    <div class="section-inner">
+        <div class="edu-grid fade-up">
+            <div class="edu-column">
+                <h3>&#127891; Education</h3>
+                <div class="edu-item">
+                    <h4>BS Cloud Administration</h4>
+                    <div class="school">CIAT (In Progress)</div>
+                </div>
+                <div class="edu-item">
+                    <h4>AS Software Development</h4>
+                    <div class="school">CIAT, 2023</div>
+                </div>
+                <div class="edu-item">
+                    <h4>MBA</h4>
+                    <div class="school">Nova Southeastern University, 2013</div>
+                </div>
+                <div class="edu-item">
+                    <h4>BS Information Technology</h4>
+                    <div class="school">Western Governors University, 2011</div>
+                </div>
+                <div class="military-card">
+                    <h4>United States Navy</h4>
+                    <div class="dates">2003 – 2012</div>
+                    <p>Served with distinction, demonstrating leadership, resilience, and technical aptitude in high-pressure environments.</p>
+                    <div class="military-tags">
+                        <span>Veterans Award</span>
+                        <span>Leadership</span>
+                        <span>Operations Specialist</span>
+                    </div>
+                </div>
+            </div>
+            <div class="edu-column">
+                <h3>&#9989; Certifications</h3>
+                <div class="certs-grid">
+                    <div class="cert-card">
+                        <h5>CompTIA Network+ CE</h5>
+                        <div class="year">Exp 2027</div>
+                    </div>
+                    <div class="cert-card">
+                        <h5>Microsoft AZ-900</h5>
+                        <div class="year">2024</div>
+                    </div>
+                    <div class="cert-card">
+                        <h5>Codecademy Python/CLI</h5>
+                        <div class="year">2022</div>
+                    </div>
+                    <div class="cert-card">
+                        <h5>Legacy MCITP</h5>
+                        <div class="year">2011</div>
+                    </div>
+                    <div class="cert-card">
+                        <h5>CompTIA Security+</h5>
+                        <div class="year">2010-2011</div>
+                    </div>
+                    <div class="cert-card">
+                        <h5>CompTIA Project+</h5>
+                        <div class="year">2010-2011</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ AI WORKFLOW CONSULTING (DEEP DIVE) ═══════════ -->
+<section id="ai-consulting" class="dark-section" style="padding: 6rem 2rem;">
+    <div class="blob-accent" style="top: -5%; right: -8%;"></div>
+    <div class="blob-accent" style="bottom: -10%; left: -5%;"></div>
+    <div class="triage-inner">
+
+        <!-- Header -->
+        <div class="triage-header fade-up">
+            <div class="badge-pill">AI Automation Engineer &middot; Workflow Consulting</div>
+            <h2>Your business runs on workflows.<br>Let AI <em>optimize them.</em></h2>
+            <p>Most businesses are already using AI somewhere — but almost none have someone who can look at the whole operation and figure out where it actually moves the needle. That's what I do.</p>
+            <div class="triage-buttons">
+                <a href="#contact" class="btn btn-primary">Book a Consultation &rarr;</a>
+                <a href="#ai-process" class="btn btn-outline-light">See the Process</a>
+            </div>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="problem-section fade-up" id="ai-process">
+            <div class="section-label section-label-light">The Process</div>
+            <h3>From assessment to implementation<br>in weeks, not months.</h3>
+            <p style="max-width: 550px;">Every engagement starts with understanding how your team actually works — then finding the highest-leverage places to introduce AI.</p>
+            <div class="ai-process-grid">
+                <div class="ai-step">
+                    <h4>Workflow Audit</h4>
+                    <p>Map your current operations end-to-end. Identify repetitive tasks, bottlenecks, and manual handoffs that are burning time and money.</p>
+                </div>
+                <div class="ai-step">
+                    <h4>Opportunity Scoring</h4>
+                    <p>Rank every automation opportunity by impact, feasibility, and ROI. You get a prioritized roadmap, not a generic pitch deck.</p>
+                </div>
+                <div class="ai-step">
+                    <h4>Design &amp; Build</h4>
+                    <p>Architect and implement AI-powered workflows using the right tools — LLMs, custom automation, API integrations, or purpose-built tooling.</p>
+                </div>
+                <div class="ai-step">
+                    <h4>Deploy &amp; Tune</h4>
+                    <p>Roll out to your team, measure results, and iterate. Every deployment includes a tuning period to make sure the automation actually sticks.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Who This Is For -->
+        <div class="fade-up" style="padding-top: 2rem;">
+            <div class="section-label section-label-light">Who This Is For</div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 900; color: var(--white); margin-bottom: 0.5rem;">Every business has workflows.<br>Every workflow can be smarter.</h3>
+            <div class="ai-audiences">
+                <div class="ai-audience-card">
+                    <div class="emoji">&#127970;</div>
+                    <h4>Small &amp; Mid-Size Businesses</h4>
+                    <p>Automate intake forms, customer follow-ups, data entry, reporting, and internal communications. Do more with the team you have.</p>
+                </div>
+                <div class="ai-audience-card">
+                    <div class="emoji">&#128736;</div>
+                    <h4>MSPs &amp; IT Service Providers</h4>
+                    <p>Streamline ticket triage, escalation workflows, onboarding, documentation generation, and client reporting with AI that understands your stack.</p>
+                </div>
+                <div class="ai-audience-card">
+                    <div class="emoji">&#127963;</div>
+                    <h4>Government &amp; Federal Agencies</h4>
+                    <p>Compliant AI workflow automation for mission-critical operations. FedRAMP-aware, audit-trail friendly, built for regulated environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before/After Examples -->
+        <div class="fade-up" style="padding-top: 2rem;">
+            <div class="section-label section-label-light">Real Impact</div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: 1.5rem;">What optimization actually looks like.</h3>
+            <div class="ai-examples">
+                <div class="ai-example">
+                    <div class="arrow">&rarr;</div>
+                    <div>
+                        <div class="before">Manual ticket triage: 15 min per escalation</div>
+                        <div class="after">AI-triaged in seconds with structured diagnostic briefs</div>
+                    </div>
+                </div>
+                <div class="ai-example">
+                    <div class="arrow">&rarr;</div>
+                    <div>
+                        <div class="before">Weekly reports assembled by hand from 5 systems</div>
+                        <div class="after">Auto-generated and delivered every Monday at 8am</div>
+                    </div>
+                </div>
+                <div class="ai-example">
+                    <div class="arrow">&rarr;</div>
+                    <div>
+                        <div class="before">New client onboarding takes 3 days of back-and-forth</div>
+                        <div class="after">Automated intake, provisioning, and welcome sequence in hours</div>
+                    </div>
+                </div>
+                <div class="ai-example">
+                    <div class="arrow">&rarr;</div>
+                    <div>
+                        <div class="before">Sales team manually logs CRM notes after every call</div>
+                        <div class="after">AI transcribes, summarizes, and updates CRM automatically</div>
+                    </div>
+                </div>
+                <div class="ai-example">
+                    <div class="arrow">&rarr;</div>
+                    <div>
+                        <div class="before">Compliance docs drafted from scratch for every audit</div>
+                        <div class="after">AI generates pre-filled templates from your existing policies</div>
+                    </div>
+                </div>
+                <div class="ai-example">
+                    <div class="arrow">&rarr;</div>
+                    <div>
+                        <div class="before">Helpdesk knowledge base is outdated, nobody maintains it</div>
+                        <div class="after">AI learns from resolved tickets and keeps docs current</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="fade-up text-center" style="padding-top: 3rem;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 900; color: var(--white); margin-bottom: 0.75rem;">Ready to see where AI fits in your operation?</h3>
+            <p style="color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">Start with a free 30-minute workflow assessment. No pitch deck, no sales pressure — just a conversation about what's possible.</p>
+            <a href="#contact" class="btn btn-primary">Book a Free Assessment &rarr;</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════ MSP TRIAGE TOOL (FULL FEATURE) ═══════════ -->
+<section id="triage" class="triage-hero">
+    <div class="blob-accent" style="top: -10%; right: 5%;"></div>
+    <div class="blob-accent" style="bottom: 0; left: -5%;"></div>
+    <div class="triage-inner">
+
+        <!-- Header -->
+        <div class="triage-header fade-up">
+            <div class="badge-pill">Built for MSPs — by an MSP Engineer</div>
+            <h2>Stop Letting Bad Tickets<br>Burn Your <em>L2 Team</em></h2>
+            <p>AI-powered ticket triage that transforms incomplete L1 escalations into structured, actionable diagnostic briefs your L2 team can act on immediately.</p>
+            <div class="triage-buttons">
+                <a href="https://vincentactual-triage.netlify.app/" class="btn btn-primary" target="_blank" rel="noopener">Book a 15-Min Demo &rarr;</a>
+                <a href="#triage-demo" class="btn btn-outline-light">See How It Works</a>
+            </div>
+        </div>
+
+        <!-- The Problem -->
+        <div class="problem-section fade-up">
+            <div class="section-label section-label-light">The Problem</div>
+            <h3>Your L1 team escalates.<br>Your L2 team re-triages.</h3>
+            <p>Every incomplete escalation costs your L2 team 15-30 minutes of re-gathering information that should have been in the ticket from the start.</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="emoji">&#128293;</div>
+                    <h4>The Ticket Says Almost Nothing</h4>
+                    <p>"User reports EHR is slow." That's the whole ticket. No workstation info, no timeline, no error codes. L2 starts from zero.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="emoji">&#9202;</div>
+                    <h4>L2 Hours Burned on Triage</h4>
+                    <p>50 escalations/week &times; 15 min each = 12+ hours of L2 time wasted on information gathering, not problem solving.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="emoji">&#9989;</div>
+                    <h4>Structured Diagnostic Briefs</h4>
+                    <p>Every escalation arrives with issue classification, missing data flags, probable root cause, and prioritized next steps.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="emoji">&#128203;</div>
+                    <h4>PSA-Ready Escalation Notes</h4>
+                    <p>Copy-pasteable formatted output that drops directly into ConnectWise, Autotask, or HaloPSA internal notes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Terminal -->
+        <div class="demo-section fade-up" id="triage-demo">
+            <div class="section-label section-label-light">How It Works</div>
+            <h3>From one-liner ticket to actionable brief.</h3>
+            <p>Paste in a raw ticket. Get back a complete triage analysis in seconds.</p>
+            <div class="demo-terminal">
+                <div class="terminal-bar">
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                </div>
+                <div class="terminal-title">ticket-triage — live demo</div>
+                <pre>
+<span class="sep">// Raw ticket input</span>
+<span class="key">INPUT:</span> "User reports shared mailbox not syncing in Outlook. Says it worked yesterday."
+
+<span class="sep">// Triage engine output</span>
+<span class="sep">── </span><span class="label">TICKET ANALYSIS</span><span class="sep"> ──</span>
+<span class="key">Category:</span> M365 > Exchange Online > Shared Mailbox
+<span class="key">Priority:</span> High (multiple users likely affected)
+
+<span class="sep">── </span><span class="label">MISSING INFORMATION</span><span class="sep"> ──</span>
+  &bull; Number of users affected
+  &bull; Outlook version (desktop / web / mobile)
+  &bull; Exact error message if any
+  &bull; Whether auto-mapping or manual add
+  &bull; Any recent mailbox permission changes
+
+<span class="sep">── </span><span class="label">DIAGNOSTIC SUMMARY</span><span class="sep"> ──</span>
+Shared mailbox sync failure with sudden onset suggests credential cache
+expiration, auto-mapping policy change, or Exchange Online service degradation.
+The "worked yesterday" timeline points to an environmental change.
+
+<span class="sep">── </span><span class="label">RECOMMENDED NEXT STEPS</span><span class="sep"> ──</span>
+1. Check M365 Service Health for Exchange advisories
+2. Verify shared mailbox permissions in Exchange Admin
+3. Remove and re-add shared mailbox in Outlook profile
+4. Clear Outlook credential cache and restart
+5. Test in OWA to isolate client vs. server issue
+
+<span class="sep">── </span><span class="label">ESCALATION NOTE (PSA-Ready)</span><span class="sep"> ──</span>
+<span class="ok">&#10003;</span> Copy-paste formatted note generated
+<span class="ok">&#10003;</span> Compliance documentation fields populated</pre>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing-section fade-up">
+            <div class="section-label section-label-light">Pricing</div>
+            <h3>One investment. Immediate ROI.</h3>
+            <p>No monthly fees. No per-ticket charges. The system pays for itself the first month.</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="tier-name">Starter</div>
+                    <div class="price">$4,000</div>
+                    <div class="price-sub">One-time investment</div>
+                    <hr>
+                    <ul>
+                        <li>AI triage engine</li>
+                        <li>6 core issue categories</li>
+                        <li>Structured escalation output</li>
+                        <li>Missing information flagging</li>
+                    </ul>
+                    <a href="https://vincentactual-triage.netlify.app/" class="btn btn-outline-teal" target="_blank" rel="noopener">Book Demo</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="pop-badge">Most Popular</div>
+                    <div class="tier-name">Professional</div>
+                    <div class="price">$9,000</div>
+                    <div class="price-sub">One-time investment</div>
+                    <hr>
+                    <ul>
+                        <li>Everything in Starter</li>
+                        <li>PSA integration (CW / Autotask / Halo)</li>
+                        <li>Custom workflow configuration</li>
+                        <li>30-day tuning period</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="https://vincentactual-triage.netlify.app/" class="btn btn-primary" target="_blank" rel="noopener">Book Demo</a>
+                </div>
+                <div class="price-card">
+                    <div class="tier-name">Enterprise</div>
+                    <div class="price">$15,000</div>
+                    <div class="price-sub">One-time investment</div>
+                    <hr>
+                    <ul>
+                        <li>Everything in Professional</li>
+                        <li>Custom category development</li>
+                        <li>Compliance documentation templates</li>
+                        <li>90-day optimization period</li>
+                        <li>Healthcare / regulated industry config</li>
+                    </ul>
+                    <a href="https://vincentactual-triage.netlify.app/" class="btn btn-outline-teal" target="_blank" rel="noopener">Book Demo</a>
+                </div>
+            </div>
+
+            <!-- Autonomous Tier -->
+            <div class="auto-banner">
+                <div>
+                    <div class="ab-badge">Coming Q2 2026 — Early Access</div>
+                    <h4>Autonomous Tier: Triage that fixes, not just diagnoses.</h4>
+                    <p>The next evolution — AI triage connected to a Terraform remediation pipeline. Known infrastructure issues get a plan generated, routed for human approval, and applied automatically. Full audit trail, HIPAA-aware, compliance-first.</p>
+                    <div class="auto-tags">
+                        <span>Terraform Remediation</span>
+                        <span>Human Approval Gate</span>
+                        <span>Full Audit Trail</span>
+                        <span>HIPAA-Aware</span>
+                    </div>
+                </div>
+                <div class="ab-right">
+                    <a href="#contact" class="btn btn-outline-teal">Ask About Early Access</a>
+                    <div class="ab-price">$25K–$35K one-time &middot; retainer available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ COVERAGE CATEGORIES ═══════════ -->
+<section class="coverage-section">
+    <div class="coverage-inner">
+        <div class="section-label section-label-red fade-up">Coverage</div>
+        <h2 class="section-title fade-up">Six core categories. Every ticket type covered.</h2>
+        <p class="section-subtitle fade-up">Built from real MSP environments, including healthcare shops with regulatory requirements.</p>
+        <div class="coverage-grid fade-up">
+            <div class="coverage-card">
+                <div class="cc-icon">&#9729;&#65039;</div>
+                <div>
+                    <h4>M365 / SaaS</h4>
+                    <p>Exchange, SharePoint, Teams, OneDrive, Entra ID, licensing, and third-party SaaS integrations.</p>
+                </div>
+            </div>
+            <div class="coverage-card">
+                <div class="cc-icon">&#128187;</div>
+                <div>
+                    <h4>Endpoint</h4>
+                    <p>Workstation issues, OS failures, driver problems, hardware diagnostics, and device management.</p>
+                </div>
+            </div>
+            <div class="coverage-card">
+                <div class="cc-icon">&#127760;</div>
+                <div>
+                    <h4>Network</h4>
+                    <p>DNS, DHCP, VPN, firewall, switching, wireless, and WAN/ISP connectivity issues.</p>
+                </div>
+            </div>
+            <div class="coverage-card">
+                <div class="cc-icon">&#128190;</div>
+                <div>
+                    <h4>Backup</h4>
+                    <p>Backup failures, recovery testing, retention policy issues, and disaster recovery procedures.</p>
+                </div>
+            </div>
+            <div class="coverage-card">
+                <div class="cc-icon">&#128737;</div>
+                <div>
+                    <h4>Security</h4>
+                    <p>Threat alerts, phishing incidents, compromised accounts, vulnerability management, and EDR events.</p>
+                </div>
+            </div>
+            <div class="coverage-card">
+                <div class="cc-icon">&#128188;</div>
+                <div>
+                    <h4>LOB Applications</h4>
+                    <p>EHR systems, practice management, legal software, accounting platforms, and industry-specific tools.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ PLEX INTEGRATOR ═══════════ -->
+<section class="plex-section">
+    <div class="section-inner">
+        <div class="section-label fade-up">Also From Vincent Actual</div>
+        <h2 class="section-title fade-up" style="margin-bottom: 2rem;">Plex Integrator</h2>
+        <div class="plex-card fade-up">
+            <div>
+                <h3>Expert Plex &amp; Smart Media Consulting</h3>
+                <p>A veteran-owned consulting practice specializing in Plex server setup, media network design, home theater integration, and smart automation. Serving clients in San Diego and remotely nationwide.</p>
+                <a href="https://plex.vincentactual.com/" class="btn btn-outline-dark" target="_blank" rel="noopener">Visit Plex Integrator &rarr;</a>
+            </div>
+            <div class="plex-features">
+                <span>Plex server optimization</span>
+                <span>Media network design</span>
+                <span>Home theater integration</span>
+                <span>Smart home automation</span>
+                <span>Remote &amp; on-site service</span>
+                <span>Nationwide coverage</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ WRITINGS ═══════════ -->
+<section id="writings" class="writings-section">
+    <div class="section-inner">
+        <div class="section-label fade-up">Insights &amp; Writing</div>
+        <h2 class="section-title fade-up">From the Field</h2>
+        <p class="section-subtitle fade-up">Thoughts on IT, cybersecurity, AI, and building a veteran-owned business.</p>
+        <div class="writings-card fade-up">
+            <div class="writings-icon">
+                <svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            </div>
+            <div class="writings-content">
+                <h3>Read on Substack</h3>
+                <p>Follow along for insights on federal IT, cloud architecture, cybersecurity compliance, AI infrastructure, and lessons learned building a veteran-owned tech company from the ground up.</p>
+                <a href="https://substack.com/@vincentactual" class="btn btn-outline-dark" id="substackLink" target="_blank" rel="noopener">Subscribe on Substack &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ COMPLIANCE ═══════════ -->
+<section id="compliance">
+    <div class="section-inner">
+        <div class="text-center">
+            <div class="section-label fade-up">Trust &amp; Compliance</div>
+            <h2 class="section-title fade-up">Security Standards We Live By</h2>
+            <p class="section-subtitle mx-auto fade-up">Every solution is architected with federal compliance requirements engineered in from the start.</p>
+        </div>
+        <div class="compliance-strip fade-up">
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">&#128737;</div>
+                <h4>NIST 800-171</h4>
+                <p>Full alignment with all 110 controls for protecting CUI in non-federal systems.</p>
+            </div>
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">&#9989;</div>
+                <h4>CMMC Level 2</h4>
+                <p>Cybersecurity Maturity Model Certification readiness across all 14 domains.</p>
+            </div>
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">&#9729;&#65039;</div>
+                <h4>FedRAMP</h4>
+                <p>Cloud solutions architected for Moderate and High baseline authorization.</p>
+            </div>
+            <div class="compliance-badge">
+                <div class="compliance-badge-icon">&#127894;</div>
+                <h4>SDVOSB</h4>
+                <p>Verified status for VA "Rule of Two" and set-aside contract opportunities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="contact-section">
+    <div class="contact-blob"></div>
+    <div class="section-inner">
+        <div class="text-center" style="margin-bottom: 3rem;">
+            <div class="section-label section-label-light fade-up">Get Started</div>
+            <h2 class="section-title section-title-light fade-up">Let's Talk Mission</h2>
+            <p class="section-subtitle section-subtitle-light mx-auto fade-up">Ready to discuss your requirements? Reach out and we'll respond within one business day.</p>
+        </div>
+        <div class="contact-grid fade-up">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-line">
+                    <div class="contact-icon">&#128222;</div>
+                    <div class="contact-text"><a href="tel:+18889299744">(888) 929-9744</a></div>
+                </div>
+                <div class="contact-line">
+                    <div class="contact-icon">&#9993;</div>
+                    <div class="contact-text"><a href="mailto:info@vincentactual.com">info@vincentactual.com</a></div>
+                </div>
+                <div class="contact-line">
+                    <div class="contact-icon">&#128205;</div>
+                    <div class="contact-text">San Diego, CA / South Florida</div>
+                </div>
+                <div class="contact-line">
+                    <div class="contact-icon">&#127760;</div>
+                    <div class="contact-text">Serving federal agencies nationwide</div>
+                </div>
+                <div class="social-links">
+                    <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+            <form class="contact-form" name="contact" method="POST" action="/success.html" data-netlify="true" data-netlify-honeypot="bot-field">
+                <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="text" name="org" placeholder="Organization / Agency">
+                <textarea name="message" placeholder="How can we support your mission?" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message &rarr;</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#" class="logo">
+                <svg class="va-logo" style="width:32px;height:38px"><use href="#va-shield"/></svg>
+                <div class="logo-text">
+                    Vincent Actual, LLC
+                    <span>Secure IT &amp; Telecom Solutions</span>
+                </div>
+            </a>
+            <p style="margin-top: 1rem;">Purpose-built compute and workflows for mission success. San Diego, CA / South Florida.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#services">Cybersecurity</a>
+            <a href="#services">Cloud Solutions</a>
+            <a href="#services">AI &amp; Automation</a>
+            <a href="#ai-consulting">AI Workflow Consulting</a>
+            <a href="#capabilities">Telecom</a>
+            <a href="#capabilities">Managed IT</a>
+        </div>
+        <div class="footer-col">
+            <h4>Products</h4>
+            <a href="#triage">MSP Ticket Triage</a>
+            <a href="https://plex.vincentactual.com/" target="_blank">Plex Integrator</a>
+            <a href="#writings">Writings</a>
+        </div>
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#about">About</a>
+            <a href="#compliance">Compliance</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Vincent Actual, LLC. All Rights Reserved.</span>
+        <span>SDVOSB &middot; San Diego, CA / South Florida</span>
+    </div>
+</footer>
+
+<script>
+    // Mobile nav
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+</script>
+
+</body>
+</html>
