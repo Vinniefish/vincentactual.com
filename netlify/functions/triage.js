@@ -201,23 +201,27 @@ exports.handler = async (event) => {
             JSON.stringify(brief, null, 2)
           ].join('\n');
 
-          await fetch('https://api.resend.com/emails', {
+          const resendRes = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${resendKey}`,
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              from: 'Vincent Actual <noreply@vincentactual.com>',
+              from: 'Vincent Actual <noreply@send.vincentactual.com>',
               to: [CAPTURE_RECIPIENT],
               subject,
               text: emailBody
             })
           });
+          const resendBody = await resendRes.text();
+          console.log(`[TRIAGE-RESEND] status=${resendRes.status} body=${resendBody}`);
         } catch (mailErr) {
           // Capture failures must never break the user-facing response.
           console.error('Capture email send failed:', mailErr);
         }
+      } else {
+        console.warn('[TRIAGE-RESEND] RESEND_API_KEY not set at runtime — skipping capture email');
       }
     }
 
