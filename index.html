@@ -1511,6 +1511,10 @@
                         <button class="sample-btn" data-sample="2" type="button">Sample: Network</button>
                         <button class="sample-btn" data-sample="3" type="button">Sample: Endpoint</button>
                     </div>
+                    <label class="consent-row" for="triage-consent">
+                        <input type="checkbox" id="triage-consent" />
+                        <span>Share this ticket with Vincent to help improve the engine. Off by default. Don't paste customer PII or credentials either way.</span>
+                    </label>
                     <div class="demo-controls">
                         <button id="triage-submit" class="triage-submit-btn" type="button">
                             <span class="btn-text">Generate Brief</span>
@@ -1565,6 +1569,9 @@
             .sample-buttons { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
             .sample-btn { background: transparent; border: 1px solid #374151; color: #9ca3af; padding: 0.4rem 0.75rem; font-size: 0.75rem; font-family: inherit; border-radius: 3px; cursor: pointer; transition: all 0.15s ease; }
             .sample-btn:hover { border-color: #22d3ee; color: #22d3ee; }
+            .consent-row { display: flex; align-items: flex-start; gap: 0.55rem; margin-top: 0.85rem; padding: 0.6rem 0.75rem; background: rgba(34, 211, 238, 0.04); border: 1px solid rgba(34, 211, 238, 0.18); border-radius: 3px; cursor: pointer; }
+            .consent-row input[type="checkbox"] { margin-top: 0.2rem; accent-color: #22d3ee; cursor: pointer; flex-shrink: 0; }
+            .consent-row span { color: #9ca3af; font-size: 0.78rem; line-height: 1.45; }
             .demo-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
             .triage-submit-btn { background: #22d3ee; color: #0a0f1a; border: none; padding: 0.7rem 1.5rem; font-size: 0.9rem; font-weight: 600; font-family: inherit; border-radius: 3px; cursor: pointer; transition: all 0.15s ease; letter-spacing: 0.02em; }
             .triage-submit-btn:hover:not(:disabled) { background: #67e8f9; }
@@ -1604,6 +1611,7 @@
                 3: "Laptop won't boot. User says it was fine yesterday. Now it just shows the Dell logo and freezes. She has a meeting in 30 minutes and needs it fixed ASAP."
             };
             const input = document.getElementById('triage-input');
+            const consentCheckbox = document.getElementById('triage-consent');
             const submitBtn = document.getElementById('triage-submit');
             const btnText = submitBtn.querySelector('.btn-text');
             const btnSpinner = submitBtn.querySelector('.btn-spinner');
@@ -1639,7 +1647,7 @@
                     const response = await fetch('/.netlify/functions/triage', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ ticket })
+                        body: JSON.stringify({ ticket, consent: consentCheckbox.checked })
                     });
                     if (!response.ok) {
                         const errorData = await response.json().catch(() => ({}));

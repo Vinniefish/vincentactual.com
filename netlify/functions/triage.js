@@ -13,9 +13,13 @@
 // 3. Netlify auto-deploys functions when you push to your repo
 // ============================================================
 
+const crypto = require('crypto');
+
 const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
 const MODEL = 'claude-haiku-4-5-20251001'; // Fast + cheap, good for triage
 const MAX_TICKET_LENGTH = 2000;
+const IP_SALT = process.env.IP_SALT || 'va-default-salt-rotate-me';
+const CAPTURE_RECIPIENT = 'info@vincentactual.com';
 
 // Rate limiting: simple in-memory (resets on function cold start)
 // For production, replace with a real rate limiter (Upstash Redis, etc.)
@@ -91,6 +95,9 @@ exports.handler = async (event) => {
   }
 
   const ticket = (body.ticket || '').trim();
+  const consent = body.consent === true;
+  const ipHash = crypto.createHash('sha256').update(clientIp + IP_SALT).digest('hex').slice(0, 16);
+  const startedAt = new Date().toISOString();
 
   // Validate input
   if (!ticket) {
@@ -168,6 +175,50 @@ exports.handler = async (event) => {
         headers: corsHeaders,
         body: JSON.stringify({ error: 'Brief format error. Try rephrasing the ticket.' })
       };
+    }
+
+    // Always log minimal metadata for traffic visibility and abuse detection.
+    // Ticket body is only persisted if the user consented.
+    console.log(`[TRIAGE] ${startedAt} | ip=${ipHash} | len=${ticket.length} | consent=${consent} | category=${brief.category || 'n/a'} | priority=${brief.priority || 'n/a'} | status=200`);
+
+    if (consent) {
+      // Full capture goes to function logs and (if configured) to email.
+      console.log(`[TRIAGE-CAPTURE] ${JSON.stringify({ ts: startedAt, ip: ipHash, ticket, brief })}`);
+
+      const resendKey = process.env.RESEND_API_KEY;
+      if (resendKey) {
+        try {
+          const subject = `[Triage] ${brief.category || 'Unknown'} | ${brief.priority || 'Unknown'}`;
+          const emailBody = [
+            `Timestamp: ${startedAt}`,
+            `IP hash: ${ipHash}`,
+            `Length: ${ticket.length} chars`,
+            '',
+            '--- TICKET ---',
+            ticket,
+            '',
+            '--- BRIEF ---',
+            JSON.stringify(brief, null, 2)
+          ].join('\n');
+
+          await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${resendKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              from: 'Vincent Actual <noreply@vincentactual.com>',
+              to: [CAPTURE_RECIPIENT],
+              subject,
+              text: emailBody
+            })
+          });
+        } catch (mailErr) {
+          // Capture failures must never break the user-facing response.
+          console.error('Capture email send failed:', mailErr);
+        }
+      }
     }
 
     return {
