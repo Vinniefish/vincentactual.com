@@ -965,7 +965,7 @@
 <div class="trust-bar">
     <div class="trust-inner">
         <div class="trust-item">Veteran-Owned (SDVOSB)</div>
-        <div class="trust-item">Healthcare MSP Tested</div>
+        <div class="trust-item">Built for Healthcare MSPs</div>
         <div class="trust-item">Compliance-Ready Output</div>
         <div class="trust-item">NIST 800-171</div>
         <div class="trust-item">CMMC Level 2</div>
@@ -1129,8 +1129,8 @@
             </div>
             <div class="cap-card fade-up">
                 <div class="cap-card-icon">&#128736;</div>
-                <h3>Managed IT &amp; MSP Services</h3>
-                <p>24/7 monitoring, patch management, incident response, helpdesk, and service desk operations with government-grade SLAs.</p>
+                <h3>MSP Triage &amp; Automation Tooling</h3>
+                <p>AI-powered intake, diagnostic brief generation, and workflow automation designed for MSP service desks. Built by an engineer who spent 15 years inside them.</p>
                 <span class="tag">MSP</span>
             </div>
         </div>
@@ -1458,7 +1458,7 @@
             <h2>Stop Letting Bad Tickets<br>Burn Your <em>L2 Team</em></h2>
             <p>AI-powered ticket triage that transforms incomplete L1 escalations into structured, actionable diagnostic briefs your L2 team can act on immediately.</p>
             <div class="triage-buttons">
-                <a href="https://vincentactual-triage.netlify.app/" class="btn btn-primary" target="_blank" rel="noopener">Book a 15-Min Demo &rarr;</a>
+                <a href="#triage-demo" class="btn btn-primary">Try the Live Demo &rarr;</a>
                 <a href="#triage-demo" class="btn btn-outline-light">See How It Works</a>
             </div>
         </div>
@@ -1492,121 +1492,305 @@
             </div>
         </div>
 
-        <!-- Demo Terminal -->
-        <div class="demo-section fade-up" id="triage-demo">
-            <div class="section-label section-label-light">How It Works</div>
-            <h3>From one-liner ticket to actionable brief.</h3>
-            <p>Paste in a raw ticket. Get back a complete triage analysis in seconds.</p>
-            <div class="demo-terminal">
-                <div class="terminal-bar">
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-dot"></div>
+        <!-- Live Triage Demo (real, calls Claude via Netlify function) -->
+        <div class="demo-section fade-up">
+            <div class="section-label section-label-light">Live Demo</div>
+            <h3>Paste a ticket. Get a structured brief.</h3>
+            <p>This is the actual triage engine. Paste any MSP support ticket below (messy is fine, that's the point) and get back a structured diagnostic brief in seconds. No signup. No email required.</p>
+
+            <div id="triage-demo" class="triage-demo-container" style="margin-top: 2.5rem;">
+                <!-- Input panel -->
+                <div class="demo-panel demo-input-panel">
+                    <div class="demo-panel-header">
+                        <span class="panel-label">INPUT: RAW TICKET</span>
+                        <span class="panel-hint">Paste or try a sample below</span>
+                    </div>
+                    <textarea id="triage-input" class="triage-textarea" placeholder="Paste a ticket here. Example: 'User says email not working, needs help ASAP.'" rows="8" maxlength="2000"></textarea>
+                    <div class="sample-buttons">
+                        <button class="sample-btn" data-sample="1" type="button">Sample: M365</button>
+                        <button class="sample-btn" data-sample="2" type="button">Sample: Network</button>
+                        <button class="sample-btn" data-sample="3" type="button">Sample: Endpoint</button>
+                    </div>
+                    <div class="demo-controls">
+                        <button id="triage-submit" class="triage-submit-btn" type="button">
+                            <span class="btn-text">Generate Brief</span>
+                            <span class="btn-spinner" hidden>&#9679; &#9679; &#9679;</span>
+                        </button>
+                        <span id="char-count" class="char-count">0 / 2000</span>
+                    </div>
                 </div>
-                <div class="terminal-title">ticket-triage — live demo</div>
-                <pre>
-<span class="sep">// Raw ticket input</span>
-<span class="key">INPUT:</span> "User reports shared mailbox not syncing in Outlook. Says it worked yesterday."
 
-<span class="sep">// Triage engine output</span>
-<span class="sep">── </span><span class="label">TICKET ANALYSIS</span><span class="sep"> ──</span>
-<span class="key">Category:</span> M365 > Exchange Online > Shared Mailbox
-<span class="key">Priority:</span> High (multiple users likely affected)
+                <!-- Output panel -->
+                <div class="demo-panel demo-output-panel">
+                    <div class="demo-panel-header">
+                        <span class="panel-label">OUTPUT: DIAGNOSTIC BRIEF</span>
+                        <span id="demo-status" class="demo-status">Ready</span>
+                    </div>
+                    <div id="triage-output" class="triage-output">
+                        <div class="output-placeholder">
+                            <p>Structured brief will appear here.</p>
+                            <p class="placeholder-small">Categories: M365 &middot; Endpoint &middot; Network &middot; Backup &middot; Security &middot; LOB Applications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<span class="sep">── </span><span class="label">MISSING INFORMATION</span><span class="sep"> ──</span>
-  &bull; Number of users affected
-  &bull; Outlook version (desktop / web / mobile)
-  &bull; Exact error message if any
-  &bull; Whether auto-mapping or manual add
-  &bull; Any recent mailbox permission changes
-
-<span class="sep">── </span><span class="label">DIAGNOSTIC SUMMARY</span><span class="sep"> ──</span>
-Shared mailbox sync failure with sudden onset suggests credential cache
-expiration, auto-mapping policy change, or Exchange Online service degradation.
-The "worked yesterday" timeline points to an environmental change.
-
-<span class="sep">── </span><span class="label">RECOMMENDED NEXT STEPS</span><span class="sep"> ──</span>
-1. Check M365 Service Health for Exchange advisories
-2. Verify shared mailbox permissions in Exchange Admin
-3. Remove and re-add shared mailbox in Outlook profile
-4. Clear Outlook credential cache and restart
-5. Test in OWA to isolate client vs. server issue
-
-<span class="sep">── </span><span class="label">ESCALATION NOTE (PSA-Ready)</span><span class="sep"> ──</span>
-<span class="ok">&#10003;</span> Copy-paste formatted note generated
-<span class="ok">&#10003;</span> Compliance documentation fields populated</pre>
+            <!-- Post-demo capture, shows after successful run -->
+            <div id="post-demo-capture" class="post-demo-capture" hidden>
+                <div class="capture-card">
+                    <h3>Want PSA integration for your shop?</h3>
+                    <p>Design partner program is open. 3 to 5 MSPs get custom integration with ConnectWise, Autotask, or HaloPSA. No cost during the design phase.</p>
+                    <form id="capture-form" class="capture-form">
+                        <input type="email" id="capture-email" class="capture-input" placeholder="you@yourmsp.com" required />
+                        <button type="submit" class="capture-submit">Request Design Partner Info &rarr;</button>
+                    </form>
+                    <p id="capture-status" class="capture-status" hidden></p>
+                </div>
             </div>
         </div>
 
-        <!-- Pricing -->
-        <div class="pricing-section fade-up">
-            <div class="section-label section-label-light">Pricing</div>
-            <h3>One investment. Immediate ROI.</h3>
-            <p>No monthly fees. No per-ticket charges. The system pays for itself the first month.</p>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div class="tier-name">Starter</div>
-                    <div class="price">$4,000</div>
-                    <div class="price-sub">One-time investment</div>
-                    <hr>
+        <!-- Demo component styles -->
+        <style>
+            .triage-demo-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; text-align: left; }
+            @media (max-width: 900px) { .triage-demo-container { grid-template-columns: 1fr; } }
+            .demo-panel { background: #0a0f1a; border: 1px solid #1f2937; border-radius: 4px; padding: 1.5rem; display: flex; flex-direction: column; min-height: 420px; }
+            .demo-panel-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.75rem; margin-bottom: 1rem; border-bottom: 1px solid #1f2937; font-family: 'SF Mono', 'Monaco', 'Consolas', monospace; font-size: 0.75rem; }
+            .panel-label { color: #22d3ee; letter-spacing: 0.1em; font-weight: 600; }
+            .panel-hint, .demo-status { color: #6b7280; font-size: 0.7rem; }
+            .demo-status.status-loading { color: #fbbf24; }
+            .demo-status.status-success { color: #34d399; }
+            .demo-status.status-error { color: #f87171; }
+            .triage-textarea { flex: 1; width: 100%; background: #050810; border: 1px solid #1f2937; border-radius: 3px; padding: 0.9rem; color: #e5e7eb; font-family: 'SF Mono', 'Monaco', 'Consolas', monospace; font-size: 0.9rem; line-height: 1.5; resize: vertical; min-height: 180px; }
+            .triage-textarea:focus { outline: none; border-color: #22d3ee; box-shadow: 0 0 0 1px #22d3ee; }
+            .sample-buttons { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+            .sample-btn { background: transparent; border: 1px solid #374151; color: #9ca3af; padding: 0.4rem 0.75rem; font-size: 0.75rem; font-family: inherit; border-radius: 3px; cursor: pointer; transition: all 0.15s ease; }
+            .sample-btn:hover { border-color: #22d3ee; color: #22d3ee; }
+            .demo-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+            .triage-submit-btn { background: #22d3ee; color: #0a0f1a; border: none; padding: 0.7rem 1.5rem; font-size: 0.9rem; font-weight: 600; font-family: inherit; border-radius: 3px; cursor: pointer; transition: all 0.15s ease; letter-spacing: 0.02em; }
+            .triage-submit-btn:hover:not(:disabled) { background: #67e8f9; }
+            .triage-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+            .btn-spinner { animation: triagePulse 1.2s ease-in-out infinite; }
+            @keyframes triagePulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+            .char-count { font-family: 'SF Mono', monospace; font-size: 0.75rem; color: #6b7280; }
+            .char-count.over-limit { color: #f87171; }
+            .triage-output { flex: 1; background: #050810; border: 1px solid #1f2937; border-radius: 3px; padding: 1rem; font-family: 'SF Mono', 'Monaco', 'Consolas', monospace; font-size: 0.85rem; line-height: 1.6; color: #d1d5db; overflow-y: auto; max-height: 500px; white-space: pre-wrap; word-wrap: break-word; }
+            .output-placeholder { color: #6b7280; text-align: center; padding: 2rem 1rem; }
+            .placeholder-small { font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.7; }
+            .output-section { margin-bottom: 1rem; }
+            .output-section-header { color: #22d3ee; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+            .output-error { color: #f87171; padding: 1rem; border-left: 2px solid #f87171; background: rgba(248, 113, 113, 0.05); }
+            .post-demo-capture { margin-top: 2rem; animation: triageSlideUp 0.4s ease-out; }
+            @keyframes triageSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+            .capture-card { background: linear-gradient(135deg, #0a0f1a 0%, #111827 100%); border: 1px solid #22d3ee; border-radius: 4px; padding: 2rem; text-align: center; }
+            .capture-card h3 { color: #f9fafb; font-size: 1.4rem; margin: 0 0 0.75rem; }
+            .capture-card p { color: #9ca3af; margin-bottom: 1.5rem; }
+            .capture-form { display: flex; gap: 0.75rem; max-width: 500px; margin: 0 auto; flex-wrap: wrap; }
+            .capture-input { flex: 1; min-width: 200px; background: #050810; border: 1px solid #374151; border-radius: 3px; padding: 0.7rem 1rem; color: #e5e7eb; font-family: inherit; font-size: 0.9rem; }
+            .capture-input:focus { outline: none; border-color: #22d3ee; }
+            .capture-submit { background: #22d3ee; color: #0a0f1a; border: none; padding: 0.7rem 1.25rem; font-weight: 600; font-family: inherit; border-radius: 3px; cursor: pointer; font-size: 0.9rem; }
+            .capture-submit:hover { background: #67e8f9; }
+            .capture-status { margin-top: 1rem; font-size: 0.9rem; }
+            .capture-status.success { color: #34d399; }
+            .capture-status.error { color: #f87171; }
+        </style>
+
+        <!-- Demo component script -->
+        <script>
+        (function() {
+            'use strict';
+            const SAMPLES = {
+                1: "User says Outlook keeps crashing when opening shared mailbox. Happens a few times a day. She uses the desktop app. Running Windows 11. Restarted already didn't help.",
+                2: "Guest wifi at the front office isn't working. Says the main network is fine but guest network shows connected, no internet. Happened sometime this morning. Ubiquiti gear.",
+                3: "Laptop won't boot. User says it was fine yesterday. Now it just shows the Dell logo and freezes. She has a meeting in 30 minutes and needs it fixed ASAP."
+            };
+            const input = document.getElementById('triage-input');
+            const submitBtn = document.getElementById('triage-submit');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnSpinner = submitBtn.querySelector('.btn-spinner');
+            const output = document.getElementById('triage-output');
+            const statusEl = document.getElementById('demo-status');
+            const charCount = document.getElementById('char-count');
+            const captureBlock = document.getElementById('post-demo-capture');
+            const captureForm = document.getElementById('capture-form');
+            const captureEmail = document.getElementById('capture-email');
+            const captureStatus = document.getElementById('capture-status');
+
+            document.querySelectorAll('.sample-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const sample = SAMPLES[btn.dataset.sample];
+                    if (sample) { input.value = sample; input.dispatchEvent(new Event('input')); }
+                });
+            });
+
+            input.addEventListener('input', () => {
+                const len = input.value.length;
+                charCount.textContent = len + ' / 2000';
+                charCount.classList.toggle('over-limit', len > 2000);
+            });
+
+            submitBtn.addEventListener('click', async () => {
+                const ticket = input.value.trim();
+                if (!ticket) { setStatus('Please paste a ticket first', 'error'); return; }
+                if (ticket.length > 2000) { setStatus('Ticket too long (max 2000 chars)', 'error'); return; }
+                setLoading(true);
+                setStatus('Analyzing...', 'loading');
+                output.innerHTML = '<div class="output-placeholder"><p>Generating diagnostic brief...</p></div>';
+                try {
+                    const response = await fetch('/.netlify/functions/triage', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ticket })
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.error || 'Server returned ' + response.status);
+                    }
+                    const data = await response.json();
+                    if (!data.brief) { throw new Error('No brief returned from server'); }
+                    renderBrief(data.brief);
+                    setStatus('Brief generated', 'success');
+                    captureBlock.hidden = false;
+                } catch (err) {
+                    console.error('Triage error:', err);
+                    output.innerHTML = '<div class="output-error">Error: ' + escapeHtml(err.message) + '<br><br>If this persists, reach out via the contact form below.</div>';
+                    setStatus('Error', 'error');
+                } finally {
+                    setLoading(false);
+                }
+            });
+
+            captureForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = captureEmail.value.trim();
+                if (!email) return;
+                captureStatus.hidden = false;
+                captureStatus.textContent = 'Submitting...';
+                captureStatus.className = 'capture-status';
+                try {
+                    const response = await fetch('/.netlify/functions/capture', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, source: 'triage-demo' })
+                    });
+                    if (response.ok) {
+                        captureStatus.textContent = "Got it. I'll be in touch within 48 hours.";
+                        captureStatus.className = 'capture-status success';
+                        captureEmail.value = '';
+                    } else { throw new Error('Submission failed'); }
+                } catch (err) {
+                    captureStatus.textContent = 'Something went wrong. Email info@vincentactual.com directly.';
+                    captureStatus.className = 'capture-status error';
+                }
+            });
+
+            function setLoading(isLoading) {
+                submitBtn.disabled = isLoading;
+                btnText.hidden = isLoading;
+                btnSpinner.hidden = !isLoading;
+            }
+            function setStatus(text, type) {
+                statusEl.textContent = text;
+                statusEl.className = 'demo-status status-' + type;
+            }
+            function renderBrief(brief) {
+                const sections = [
+                    { key: 'category', label: 'CATEGORY' },
+                    { key: 'priority', label: 'PRIORITY' },
+                    { key: 'missing_information', label: 'MISSING INFORMATION' },
+                    { key: 'probable_cause', label: 'PROBABLE CAUSE' },
+                    { key: 'next_steps', label: 'RECOMMENDED NEXT STEPS' },
+                    { key: 'escalation_note', label: 'ESCALATION NOTE (PSA-READY)' }
+                ];
+                let html = '';
+                sections.forEach(section => {
+                    const content = brief[section.key];
+                    if (!content) return;
+                    html += '<div class="output-section">';
+                    html += '<div class="output-section-header">-- ' + section.label + ' --</div>';
+                    if (Array.isArray(content)) {
+                        html += content.map(item => '  • ' + escapeHtml(item)).join('\n');
+                    } else {
+                        html += escapeHtml(String(content));
+                    }
+                    html += '</div>';
+                });
+                output.innerHTML = html || '<div class="output-error">Brief returned empty. Try another ticket.</div>';
+            }
+            function escapeHtml(str) {
+                const div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+        })();
+        </script>
+
+        <!-- Design Partner Program -->
+        <div class="pricing-section fade-up" id="pricing">
+            <div class="section-label section-label-light">Design Partner Program</div>
+            <h3>Shape v1. No cost during the design phase.</h3>
+            <p>I'm working with 3 to 5 MSPs as design partners to build the first production version of the triage engine. Design partners get direct input on what gets built, how it integrates with their PSA, and which workflows get prioritized. In exchange, I get real ticket data and operational feedback to build against.</p>
+
+            <div class="dp-grid">
+                <div class="dp-card">
+                    <h4>What design partners get</h4>
                     <ul>
-                        <li>AI triage engine</li>
-                        <li>6 core issue categories</li>
-                        <li>Structured escalation output</li>
-                        <li>Missing information flagging</li>
+                        <li>No cost during the design partner period</li>
+                        <li>Direct input on feature prioritization</li>
+                        <li>Custom integration with your PSA (ConnectWise, Autotask, or HaloPSA)</li>
+                        <li>Workflow tuned to your shop's ticket patterns</li>
+                        <li>Early access to the autonomous remediation tier when it ships</li>
                     </ul>
-                    <a href="https://vincentactual-triage.netlify.app/" class="btn btn-outline-teal" target="_blank" rel="noopener">Book Demo</a>
                 </div>
-                <div class="price-card featured">
-                    <div class="pop-badge">Most Popular</div>
-                    <div class="tier-name">Professional</div>
-                    <div class="price">$9,000</div>
-                    <div class="price-sub">One-time investment</div>
-                    <hr>
+                <div class="dp-card">
+                    <h4>What I need from you</h4>
                     <ul>
-                        <li>Everything in Starter</li>
-                        <li>PSA integration (CW / Autotask / Halo)</li>
-                        <li>Custom workflow configuration</li>
-                        <li>30-day tuning period</li>
-                        <li>Priority support</li>
+                        <li>Anonymized ticket samples from your actual queue</li>
+                        <li>30 to 45 minutes of feedback calls, weekly</li>
+                        <li>An L2 engineer willing to test briefs and flag gaps</li>
+                        <li>A commitment to evaluate for 60 days</li>
                     </ul>
-                    <a href="https://vincentactual-triage.netlify.app/" class="btn btn-primary" target="_blank" rel="noopener">Book Demo</a>
-                </div>
-                <div class="price-card">
-                    <div class="tier-name">Enterprise</div>
-                    <div class="price">$15,000</div>
-                    <div class="price-sub">One-time investment</div>
-                    <hr>
-                    <ul>
-                        <li>Everything in Professional</li>
-                        <li>Custom category development</li>
-                        <li>Compliance documentation templates</li>
-                        <li>90-day optimization period</li>
-                        <li>Healthcare / regulated industry config</li>
-                    </ul>
-                    <a href="https://vincentactual-triage.netlify.app/" class="btn btn-outline-teal" target="_blank" rel="noopener">Book Demo</a>
                 </div>
             </div>
 
-            <!-- Autonomous Tier -->
-            <div class="auto-banner">
+            <div class="dp-cta">
+                <p>Design partner slots are limited. If your L2 team is burning time reconstructing garbage escalations and you want a seat at the table for this, reach out.</p>
+                <a href="#contact" class="btn btn-primary">Apply as a Design Partner &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="pricing-section fade-up" id="roadmap" style="margin-top: 4rem;">
+            <div class="section-label section-label-light">Roadmap</div>
+            <h3>What's next after the triage engine.</h3>
+            <div class="auto-banner" style="grid-template-columns: 1fr;">
                 <div>
-                    <div class="ab-badge">Coming Q2 2026 — Early Access</div>
-                    <h4>Autonomous Tier: Triage that fixes, not just diagnoses.</h4>
-                    <p>The next evolution — AI triage connected to a Terraform remediation pipeline. Known infrastructure issues get a plan generated, routed for human approval, and applied automatically. Full audit trail, HIPAA-aware, compliance-first.</p>
+                    <div class="ab-badge">Autonomous Remediation Tier</div>
+                    <h4>Next-generation: AI triage connected to a Terraform remediation pipeline.</h4>
+                    <p>Known infrastructure issues get a remediation plan generated, routed through a human approval gate, and applied automatically. Full audit trail. HIPAA-aware. Compliance-first by design.</p>
                     <div class="auto-tags">
                         <span>Terraform Remediation</span>
                         <span>Human Approval Gate</span>
                         <span>Full Audit Trail</span>
                         <span>HIPAA-Aware</span>
                     </div>
-                </div>
-                <div class="ab-right">
-                    <a href="#contact" class="btn btn-outline-teal">Ask About Early Access</a>
-                    <div class="ab-price">$25K–$35K one-time &middot; retainer available</div>
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 1rem; font-style: italic;">Roadmap item. Not in development yet. Design partners get early access when it ships.</p>
                 </div>
             </div>
         </div>
+
+        <!-- Design Partner grid styles -->
+        <style>
+            .dp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; text-align: left; }
+            @media (max-width: 900px) { .dp-grid { grid-template-columns: 1fr; } }
+            .dp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 1.75rem; }
+            .dp-card h4 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.25rem; margin: 0 0 1rem; font-weight: 700; }
+            .dp-card ul { list-style: none; padding: 0; margin: 0; }
+            .dp-card li { color: rgba(255,255,255,0.75); padding: 0.5rem 0 0.5rem 1.5rem; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .dp-card li:last-child { border-bottom: none; }
+            .dp-card li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+            .dp-cta { text-align: center; margin-top: 2.5rem; padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; }
+            .dp-cta p { color: rgba(255,255,255,0.7); max-width: 700px; margin: 0 auto 1.5rem; }
+        </style>
     </div>
 </section>
 
