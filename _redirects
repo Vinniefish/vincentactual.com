@@ -1,0 +1,6 @@
+# Legacy triage paths -> triage subdomain (301 permanent)
+/triage             https://triage.vincentactual.com/        301!
+/triage-demo        https://triage.vincentactual.com/        301!
+/msp-triage         https://triage.vincentactual.com/        301!
+/ai-triage          https://triage.vincentactual.com/        301!
+/triage/*           https://triage.vincentactual.com/:splat  301!
