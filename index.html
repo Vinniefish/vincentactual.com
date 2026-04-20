@@ -1855,24 +1855,70 @@
     </div>
 </section>
 
-<!-- ═══════════ PLEX INTEGRATOR ═══════════ -->
-<section class="plex-section">
+<!-- ═══════════ CASE STUDY: VARUN D. / STREAMSTACK ═══════════ -->
+<style>
+  .case-study { background: var(--navy-deep); padding: 6rem 2rem 4rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .case-inner { max-width: 1100px; margin: 0 auto; }
+  .case-quote {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(20, 184, 166, 0.05));
+    border-left: 3px solid var(--teal);
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+  }
+  .case-quote p { font-size: 1.15rem; line-height: 1.7; color: var(--navy-light); margin: 0 0 1rem; font-style: italic; }
+  .case-quote cite { display: block; font-style: normal; color: var(--teal); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; }
+  .case-summary { color: var(--navy-light); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; max-width: 780px; }
+  .case-summary strong { color: #fff; font-weight: 600; }
+  .case-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .case-gallery figure { margin: 0; background: var(--navy-mid); border: 1px solid rgba(56,189,248,0.12); border-radius: 8px; overflow: hidden; transition: transform .2s ease, border-color .2s ease; }
+  .case-gallery figure:hover { transform: translateY(-2px); border-color: var(--teal); }
+  .case-gallery img { width: 100%; height: 180px; object-fit: cover; display: block; background: #000; }
+  .case-gallery figcaption { padding: 0.75rem 1rem; font-size: 0.82rem; color: var(--navy-light); line-height: 1.4; }
+  @media (max-width: 640px) { .case-study { padding: 4rem 1.25rem 2.5rem; } .case-quote { padding: 1.5rem; } .case-gallery img { height: 160px; } }
+</style>
+<section class="case-study">
+  <div class="case-inner">
+    <div class="section-label fade-up">Client Case Study</div>
+    <h2 class="section-title fade-up" style="margin-bottom: 2rem;">Plex + Lidarr + Docker on Synology</h2>
+    <div class="case-quote fade-up">
+      <p>"Vincent built me a complete self-hosted media stack from scratch. Plex, Lidarr, Prowlarr, all running in Docker on my Synology, with port forwarding and remote access dialed in. He explained every step so I understood what was running and why. Rock-solid and still running clean."</p>
+      <cite>Varun D. — StreamStack client</cite>
+    </div>
+    <p class="case-summary fade-up">
+      <strong>The build:</strong> Synology NAS with a shared media folder structure, Docker-hosted Plex container bound to the NAS library, Lidarr and Prowlarr wired together for automated music acquisition, and router-level port forwarding for secure remote Plex streaming. Delivered fully remote via AnyDesk. Eight-step handoff below.
+    </p>
+    <div class="case-gallery fade-up">
+      <figure><img src="/assets/img/varun/01_folder_structure.png" alt="Synology shared media folder structure"><figcaption>1. Shared folder structure on Synology NAS</figcaption></figure>
+      <figure><img src="/assets/img/varun/02_docker_images.png" alt="Docker images running on Synology"><figcaption>2. Docker stack: Plex, Lidarr, Prowlarr</figcaption></figure>
+      <figure><img src="/assets/img/varun/03_plex_container.png" alt="Plex container configuration"><figcaption>3. Plex container volume mapping</figcaption></figure>
+      <figure><img src="/assets/img/varun/04_lidarr_volumes.png" alt="Lidarr volume configuration"><figcaption>4. Lidarr volume paths wired to library</figcaption></figure>
+      <figure><img src="/assets/img/varun/05_prowlarr_lidarr_connected.png" alt="Prowlarr indexers synced with Lidarr"><figcaption>5. Prowlarr indexers synced to Lidarr</figcaption></figure>
+      <figure><img src="/assets/img/varun/06_lidarr_artist_search.png" alt="Lidarr artist search"><figcaption>6. First artist search in Lidarr</figcaption></figure>
+      <figure><img src="/assets/img/varun/07_lidarr_monitoring.png" alt="Lidarr monitoring library"><figcaption>7. Library monitoring active</figcaption></figure>
+      <figure><img src="/assets/img/varun/08_port_forwarding_complete.png" alt="Port forwarding configured"><figcaption>8. Remote Plex access verified</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STREAMSTACK ═══════════ -->
+<section id="streamstack" class="plex-section">
     <div class="section-inner">
         <div class="section-label fade-up">Also From Vincent Actual</div>
-        <h2 class="section-title fade-up" style="margin-bottom: 2rem;">Plex Integrator</h2>
+        <h2 class="section-title fade-up" style="margin-bottom: 2rem;">StreamStack</h2>
         <div class="plex-card fade-up">
             <div>
-                <h3>Expert Plex &amp; Smart Media Consulting</h3>
-                <p>A veteran-owned consulting practice specializing in Plex server setup, media network design, home theater integration, and smart automation. Serving clients in San Diego and remotely nationwide.</p>
-                <a href="https://plex.vincentactual.com/" class="btn btn-outline-dark" target="_blank" rel="noopener">Visit Plex Integrator &rarr;</a>
+                <h3>Self-Hosted Media &amp; Smart Home Builds</h3>
+                <p>A veteran-owned consulting practice specializing in Plex servers, NAS configuration, Docker stacks, Lidarr/Sonarr automation, and home theater integration. Delivered fully remote via AnyDesk. Serving clients in Miami Beach and worldwide.</p>
+                <a href="https://streamstack.vincentactual.com/" class="btn btn-outline-dark" target="_blank" rel="noopener">Visit StreamStack &rarr;</a>
             </div>
             <div class="plex-features">
-                <span>Plex server optimization</span>
-                <span>Media network design</span>
+                <span>Plex server builds</span>
+                <span>NAS &amp; Docker setup</span>
+                <span>Lidarr / Sonarr automation</span>
                 <span>Home theater integration</span>
-                <span>Smart home automation</span>
-                <span>Remote &amp; on-site service</span>
-                <span>Nationwide coverage</span>
+                <span>Remote via AnyDesk</span>
+                <span>Worldwide coverage</span>
             </div>
         </div>
     </div>
@@ -1952,7 +1998,7 @@
                 </div>
                 <div class="contact-line">
                     <div class="contact-icon">&#128205;</div>
-                    <div class="contact-text">San Diego, CA / South Florida</div>
+                    <div class="contact-text">Miami Beach, FL / Remote Worldwide</div>
                 </div>
                 <div class="contact-line">
                     <div class="contact-icon">&#127760;</div>
@@ -1985,7 +2031,7 @@
                     <span>Secure IT &amp; Telecom Solutions</span>
                 </div>
             </a>
-            <p style="margin-top: 1rem;">Purpose-built compute and workflows for mission success. San Diego, CA / South Florida.</p>
+            <p style="margin-top: 1rem;">Purpose-built compute and workflows for mission success. Miami Beach, FL / Remote Worldwide.</p>
         </div>
         <div class="footer-col">
             <h4>Services</h4>
@@ -1999,7 +2045,7 @@
         <div class="footer-col">
             <h4>Products</h4>
             <a href="#triage">MSP Ticket Triage</a>
-            <a href="https://plex.vincentactual.com/" target="_blank">Plex Integrator</a>
+            <a href="https://streamstack.vincentactual.com/" target="_blank">StreamStack</a>
             <a href="#writings">Writings</a>
         </div>
         <div class="footer-col">
@@ -2011,7 +2057,7 @@
     </div>
     <div class="footer-bottom">
         <span>&copy; 2026 Vincent Actual, LLC. All Rights Reserved.</span>
-        <span>SDVOSB &middot; San Diego, CA / South Florida</span>
+        <span>SDVOSB &middot; Miami Beach, FL / Remote Worldwide</span>
     </div>
 </footer>
 
